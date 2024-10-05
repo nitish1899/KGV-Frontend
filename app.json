@@ -25,7 +25,8 @@
         "foregroundImage": "./assets/images/kgv.png",
         "backgroundColor": "#ffffff"
       },
-      "versionCode": 15
+      "versionCode": 15,
+      "package": "com.tsilteam.KGVHybridSol"
     },
     "web": {
       "favicon": "./assets/images/kgv.png"

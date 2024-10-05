@@ -2,13 +2,18 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 import Icon from '@expo/vector-icons/MaterialIcons';
 import { LinearGradient } from 'expo-linear-gradient';
-export default function TermsAndConditions({ navigation, route }) {
+import { useNavigation, useRoute } from '@react-navigation/native';
+
+export default function TermsAndConditions() {
+    const navigation = useNavigation();
+    const route = useRoute();
+    
     const [isChecked, setIsChecked] = useState(false);
 
     const handleAccept = () => {
         if (isChecked) {
             // Set terms accepted to true and go back to the main form
-            route.params.onAccept();
+            route.params?.onGoBack(true);
             navigation.goBack();
         }
     };
@@ -16,7 +21,7 @@ export default function TermsAndConditions({ navigation, route }) {
     return (
         <LinearGradient colors={['#545a2c', '#FFF']} style={styles.gradient}>
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
-            <Image
+                <Image
                     source={require("../assets/images/kgv.png")} // Replace with your image URL or local file
                     style={styles.image}
                 />
@@ -27,7 +32,7 @@ export default function TermsAndConditions({ navigation, route }) {
                 </Text>
                 <View style={styles.checkboxContainer}>
                     <TouchableOpacity
-                        style={[styles.checkbox,{backgroundColor: isChecked ? '#06264D' : '#ccc'}]}
+                        style={[styles.checkbox, { backgroundColor: isChecked ? '#06264D' : '#ccc' }]}
                         onPress={() => setIsChecked(!isChecked)}
                     >
                         {isChecked && <Text style={styles.checkmark}>✔</Text>}
@@ -43,7 +48,7 @@ export default function TermsAndConditions({ navigation, route }) {
                     <Icon name="arrow-forward" size={24} color="#FFF" />
                 </TouchableOpacity>
             </ScrollView>
-            </LinearGradient>
+        </LinearGradient>
     );
 }
 

@@ -238,7 +238,6 @@ export default ({ navigation, route }) => {
                     </View>
 
                     <TermsAndConditionsCheckbox
-                        navigation={navigation}
                         termsAccepted={termsAccepted}
                         handleAcceptTerms={handleAcceptTerms}
                     />

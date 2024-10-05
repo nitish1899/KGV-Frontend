@@ -4,10 +4,11 @@ import { TouchableOpacity, View, Text, StyleSheet, Dimensions } from 'react-nati
 const { width, height } = Dimensions.get('window'); // Get screen width and height
 
 
-const TermsAndConditionsCheckbox1 = ({ navigation, termsAccepted, handleAcceptTerms }) => {
+const TermsAndConditionsCheckbox1 = ({ termsAccepted, handleAcceptTerms }) => {
+
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate('TermsAndConditions1', { onAccept: handleAcceptTerms })}
+            onPress={handleAcceptTerms}
             style={styles.termsContainer}
         >
             <View style={styles.checkboxContainer}>

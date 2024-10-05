@@ -149,8 +149,14 @@ export default ({ navigation, route }) => {
         };
     }, [userId]);
 
-    const handleAcceptTerms = () => {
-        setTermsAccepted(true); // Set terms as accepted
+    const handleAcceptTerms = (accepted) => {
+        setTermsAccepted(accepted);
+    };
+
+    const navigateToTerms = () => {
+        navigation.navigate('TermsAndConditions1', {
+            onGoBack: (accepted) => handleAcceptTerms(accepted)
+        });
     };
 
     return (
@@ -230,16 +236,9 @@ export default ({ navigation, route }) => {
                     </View>
 
                     <TermsAndConditionsCheckbox
-                        navigation={navigation}
                         termsAccepted={termsAccepted}
-                        handleAcceptTerms={handleAcceptTerms}
+                        handleAcceptTerms={navigateToTerms}
                     />
-
-
-
-
-
-
 
                     <TouchableOpacity
                         style={[styles.button, { backgroundColor: termsAccepted ? '#06264D' : '#ccc' }]}

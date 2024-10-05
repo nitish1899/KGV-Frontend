@@ -1,10 +1,14 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, StyleSheet, Dimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 
 const { width, height } = Dimensions.get('window'); // Get screen width and height
 
 
-const TermsAndConditionsCheckbox = ({ navigation, termsAccepted, handleAcceptTerms }) => {
+const TermsAndConditionsCheckbox = ({ termsAccepted, handleAcceptTerms }) => {
+    const navigation = useNavigation();
+
     return (
         <TouchableOpacity
             onPress={() => navigation.navigate('TermsAndConditions', { onAccept: handleAcceptTerms })}

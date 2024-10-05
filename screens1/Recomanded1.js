@@ -128,7 +128,7 @@ const Recomanded1 = ({ route }) => {
     const getKitImage = (kitName) => {
         switch (kitName) {
             case 'HX1':
-                return require('../assets/images/cart3.png');
+                return require('../assets/images/HX-1.png');
             case 'HX2':
                 return require('../assets/images/cart2.png');
             case 'HX3':
