@@ -48,7 +48,7 @@ export default ({ navigation }) => {
 
             if (response.ok) {
                 Alert.alert('Success', 'Registration successful');
-                navigation.navigate('Login');
+                navigation.navigate('Login1');
             } else {
                 Alert.alert('Error', result.msg || 'Registration failed');
             }

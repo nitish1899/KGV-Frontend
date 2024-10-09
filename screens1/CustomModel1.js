@@ -5,6 +5,7 @@ const CustomModal1 = ({ modalVisible, setModalVisible, navigation, user }) => {
     const visitorId = user?.data?.userId;
     const referralCode = user?.data?.myReferralCode || 'DEFAULT_CODE';  // Get referral code from user data
 
+    console.log('CustomModel1 user', user);
     const onShare = async () => {
         try {
             const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.tsilteam.KGVHybridSol'; 

@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         marginVertical: height * 0.015
     },
     checkboxChecked: {
-        backgroundColor: '#06264D',
+        backgroundColor: '#545a2c',
     },
     linkText: {
         color: '#007BFF',

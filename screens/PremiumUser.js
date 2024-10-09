@@ -20,8 +20,8 @@ const PremiumUser = ({ route }) => {
     gender: '',
     pan: '',
     email: '',
-    amount: '299', 
-    userId:visitorId
+    amount: '299',
+    userId: visitorId
   });
 
   useEffect(() => {
@@ -57,17 +57,17 @@ const PremiumUser = ({ route }) => {
   const checkoutHandler = async () => {
     try {
       const { fullName, phoneNumber, address, email, amount } = formData;
-  
+
       if (!fullName || !phoneNumber || !address || !email || isNaN(amount) || Number(amount) <= 0) {
         Alert.alert('Validation Error', 'Please fill all required fields with valid data.');
         return;
       }
-  
+
       const amountInPaise = Math.round(Number(amount) * 100);
-  
+
       const { data: { key } } = await axios.get("https://kgv-backend.onrender.com/api/getkey");
       const { data: { order } } = await axios.post("https://kgv-backend.onrender.com/api/v1/kgvmitra/kgvcheckout", { amount: amountInPaise });
-  
+
       const options = {
         key,
         amount: order.amount,
@@ -97,8 +97,8 @@ const PremiumUser = ({ route }) => {
           color: "#121212",
         },
       };
-  
-      RazorpayCheckout.open(options).then(async(data) => {
+
+      RazorpayCheckout.open(options).then(async (data) => {
         // Resetting the navigation stack to prevent going back
         console.log(data.razorpay_payment_id)
         console.log(data.razorpay_order_id)
@@ -106,90 +106,32 @@ const PremiumUser = ({ route }) => {
 
         const verificationResponse = await axios.post("https://kgv-backend.onrender.com/api/v1/payment/premium/payment-verification", {
           ...data
-      });
+        });
 
-      if (verificationResponse.data.success) {
-        navigation.navigate('PremiumPayment',{paymentId:data.razorpay_payment_id, formData})
+        if (verificationResponse.data.success) {
+          navigation.navigate('PremiumPayment', { paymentId: data.razorpay_payment_id, formData })
           // Navigate to the success screen
-        //  navigation.dispatch(
-        //   CommonActions.reset({
-        //     index: 0,
-        //     routes: [{ name: 'MainNavigator1', params: { screen: 'Welcome1', params: { visitorId } } }],
-        //   })
-        // );
-        
-      } else {
+          //  navigation.dispatch(
+          //   CommonActions.reset({
+          //     index: 0,
+          //     routes: [{ name: 'MainNavigator1', params: { screen: 'Welcome1', params: { visitorId } } }],
+          //   })
+          // );
+
+        } else {
           // Handle failure (if any)
           Alert.alert('Payment Verification Failed', 'Please contact support.');
-      }    
+        }
       }).catch((error) => {
         console.error("Razorpay Error:", error);
         Alert.alert(`Error: ${error.code} | ${error.description}`);
       });
-  
+
     } catch (error) {
       console.error("Error:", error);
       Alert.alert('Error', 'Something went wrong. Please try again.');
     }
   };
-
-  // const checkoutHandler = async () => {
-  //   try {
-  //     const { fullName, phoneNumber, address, email, amount } = formData;
-
-  //     if (!fullName || !phoneNumber || !address || !email || isNaN(amount) || Number(amount) <= 0) {
-  //       Alert.alert('Validation Error', 'Please fill all required fields with valid data.');
-  //       return;
-  //     }
-
-  //     const amountInPaise = Math.round(Number(amount) * 100);
-
-  //     const { data: { key } } = await axios.get("https://kgv-backend.onrender.com/api/getkey");
-  //     const { data: { order } } = await axios.post("https://kgv-backend.onrender.com/api/v1/kgvmitra/kgvcheckout", { amount: amountInPaise });
-
-  //     const options = {
-  //       key,
-  //       amount: order.amount,
-  //       currency: "INR",
-  //       name: "Payment to KGV",
-  //       description: "Payment for KGV services",
-  //       image: "https://raw.githubusercontent.com/jagdish97897/kgvl/main/logokgv.cb6e50d56b55ae361cd7-removebg-preview.png",
-  //       order_id: order.id,
-  //       prefill: {
-  //         name: formData.fullName,
-  //         email: formData.email,
-  //         contact: formData.phoneNumber,
-  //       },
-  //       notes: {
-  //         fullName: formData.fullName,
-  //         phoneNumber: formData.phoneNumber,
-  //         address: formData.address,
-  //         aadhar: formData.aadhar,
-  //         dlno: formData.dlno,
-  //         dob: formData.dob,
-  //         gender: formData.gender,
-  //         email: formData.email,
-  //         amount: formData.amount,
-  //         pan: formData.pan,
-  //       },
-  //       theme: {
-  //         color: "#121212",
-  //       },
-  //     };
-
-  //     RazorpayCheckout.open(options).then((data) => {
-  //       navigation.navigate('MainNavigator1', { screen: 'Landing1', params: { data } });
-  //       // navigation.navigate('Landing1', { data });
-  //     }).catch((error) => {
-  //       console.error("Razorpay Error:", error);
-  //       Alert.alert(`Error: ${error.code} | ${error.description}`);
-  //     });
-
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //     Alert.alert('Error', 'Something went wrong. Please try again.');
-  //   }
-  // };
 
   return (
     <LinearGradient colors={['#06264D', '#FFF']} style={styles.gradient}>
@@ -199,34 +141,34 @@ const PremiumUser = ({ route }) => {
             source={require("../assets/images/kgvmitr.png")}
             style={styles.logo}
           />
-            <View style={styles.container}>
-                <Text style={styles.title}>Join KGV Mitra Club</Text>
-                <Text style={styles.description}>
-             
-                    Enjoy exclusive premium features with your premium account.
-                </Text>
+          <View style={styles.container}>
+            <Text style={styles.title}>Join KGV Mitra Club</Text>
+            <Text style={styles.description}>
 
-                {/* Premium Features Section */}
-                <View style={styles.featuresContainer}>
-                    <Text style={styles.featureItem}>⭐ Unlimited Access to Content</Text>
-                    <Text style={styles.featureItem}>⭐ Ad-Free Experience</Text>
-                    <Text style={styles.featureItem}>⭐ Priority Support</Text>
-                    <Text style={styles.featureItem}>⭐ Early Access to New Features</Text>
-                </View>
+              Enjoy exclusive premium features with your premium account.
+            </Text>
 
-                {/* Button to upgrade or manage premium subscription */}
-                <TouchableOpacity style={styles.upgradeButton} onPress={checkoutHandler}>
-                    <Text style={styles.upgradeButtonText}>Upgrade Your Plan</Text>
-                </TouchableOpacity>
-
-                {/* Back to Home or other screens */}
-                <TouchableOpacity
-                    style={styles.backButton}
-                    onPress={() => navigation.goBack()}
-                >
-                    <Text style={styles.backButtonText}>Back to Menu</Text>
-                </TouchableOpacity>
+            {/* Premium Features Section */}
+            <View style={styles.featuresContainer}>
+              <Text style={styles.featureItem}>⭐ Unlimited Access to Content</Text>
+              <Text style={styles.featureItem}>⭐ Ad-Free Experience</Text>
+              <Text style={styles.featureItem}>⭐ Priority Support</Text>
+              <Text style={styles.featureItem}>⭐ Early Access to New Features</Text>
             </View>
+
+            {/* Button to upgrade or manage premium subscription */}
+            <TouchableOpacity style={styles.upgradeButton} onPress={checkoutHandler}>
+              <Text style={styles.upgradeButtonText}>Upgrade Your Plan</Text>
+            </TouchableOpacity>
+
+            {/* Back to Home or other screens */}
+            <TouchableOpacity
+              style={styles.backButton}
+              onPress={() => navigation.goBack()}
+            >
+              <Text style={styles.backButtonText}>Back to Menu</Text>
+            </TouchableOpacity>
+          </View>
 
 
 
@@ -260,160 +202,51 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     backgroundColor: 'transparent',  // Set backgroundColor to transparent to allow gradient to show
-},
-title: {
+  },
+  title: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#FFF',  // White text for better visibility on dark background
     marginBottom: 20,
-},
-description: {
+  },
+  description: {
     fontSize: 16,
     color: '#FFF',  // White text for better visibility
     textAlign: 'center',
     marginBottom: 30,
-},
+  },
 
-featuresContainer: {
+  featuresContainer: {
     marginBottom: 30,
-},
-featureItem: {
+  },
+  featureItem: {
     fontSize: 16,
     color: '#FFF',  // White text for better visibility
     marginBottom: 10,
-},
-upgradeButton: {
+  },
+  upgradeButton: {
     backgroundColor: '#FFD700',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
     marginBottom: 20,
-},
-upgradeButtonText: {
+  },
+  upgradeButtonText: {
     fontSize: 16,
     color: '#000',  // Dark text to contrast with gold button
     fontWeight: 'bold',
-},
-backButton: {
+  },
+  backButton: {
     backgroundColor: '#06264D',  // White button for contrast
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
-},
-backButtonText: {
+  },
+  backButtonText: {
     fontSize: 16,
-    color: '#FFF',  
-},
+    color: '#FFF',
+  },
 
 });
 
 export default PremiumUser;
-
-
-
-// import React from 'react';
-// import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-// import { LinearGradient } from 'expo-linear-gradient';
-// import { useNavigation } from '@react-navigation/native';
-
-// const PremiumUser = ({ route }) => {
-//     const { visitorId } = route.params;
-//     console.log(visitorId)
-//     const navigation = useNavigation();
-//     const handleUpgrade = () => {
-//         // Implement the logic for upgrading to a premium account or accessing premium features
-//         console.log('Upgrade to premium clicked');
-//         // Navigate to a payment or subscription screen if necessary
-//     };
-
-//     return (
-//         <LinearGradient colors={['#06264D', '#FFF']} style={styles.gradientBackground}>
-//             <View style={styles.container}>
-//                 <Text style={styles.title}>Join KGV Mitra Club</Text>
-//                 <Text style={styles.description}>
-             
-//                     Enjoy exclusive premium features with your premium account.
-//                 </Text>
-
-//                 {/* Premium Features Section */}
-//                 <View style={styles.featuresContainer}>
-//                     <Text style={styles.featureItem}>⭐ Unlimited Access to Content</Text>
-//                     <Text style={styles.featureItem}>⭐ Ad-Free Experience</Text>
-//                     <Text style={styles.featureItem}>⭐ Priority Support</Text>
-//                     <Text style={styles.featureItem}>⭐ Early Access to New Features</Text>
-//                 </View>
-
-//                 {/* Button to upgrade or manage premium subscription */}
-//                 <TouchableOpacity style={styles.upgradeButton} onPress={handleUpgrade}>
-//                     <Text style={styles.upgradeButtonText}>Upgrade Your Plan</Text>
-//                 </TouchableOpacity>
-
-//                 {/* Back to Home or other screens */}
-//                 <TouchableOpacity
-//                     style={styles.backButton}
-//                     onPress={() => navigation.goBack()}
-//                 >
-//                     <Text style={styles.backButtonText}>Back to Menu</Text>
-//                 </TouchableOpacity>
-//             </View>
-//         </LinearGradient>
-//     );
-// };
-
-// const styles = StyleSheet.create({
-//     gradientBackground: {
-//         flex: 1,
-//     },
-//     container: {
-//         flex: 1,
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         padding: 20,
-//         backgroundColor: 'transparent',  // Set backgroundColor to transparent to allow gradient to show
-//     },
-//     title: {
-//         fontSize: 24,
-//         fontWeight: 'bold',
-//         color: '#FFF',  // White text for better visibility on dark background
-//         marginBottom: 20,
-//     },
-//     description: {
-//         fontSize: 16,
-//         color: '#FFF',  // White text for better visibility
-//         textAlign: 'center',
-//         marginBottom: 30,
-//     },
-//     featuresContainer: {
-//         marginBottom: 30,
-//     },
-//     featureItem: {
-//         fontSize: 16,
-//         color: '#FFF',  // White text for better visibility
-//         marginBottom: 10,
-//     },
-//     upgradeButton: {
-//         backgroundColor: '#FFD700',
-//         paddingVertical: 10,
-//         paddingHorizontal: 20,
-//         borderRadius: 5,
-//         marginBottom: 20,
-//     },
-//     upgradeButtonText: {
-//         fontSize: 16,
-//         color: '#000',  // Dark text to contrast with gold button
-//         fontWeight: 'bold',
-//     },
-//     backButton: {
-//         backgroundColor: '#06264D',  // White button for contrast
-//         paddingVertical: 10,
-//         paddingHorizontal: 20,
-//         borderRadius: 5,
-//     },
-//     backButtonText: {
-//         fontSize: 16,
-//         color: '#FFF',  
-//     },
-// });
-
-// export default PremiumUser;
-

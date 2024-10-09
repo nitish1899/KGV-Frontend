@@ -125,11 +125,6 @@ const CheckoutButton = ({ route }) => {
             onPress={checkoutHandler}
             disabled={true}
           >
-            {/* <TouchableOpacity
-            style={[styles.button, isDisabled && styles.buttonDisabled]}
-            onPress={checkoutHandler}
-            disabled={isDisabled}
-          ></TouchableOpacity> */}
             <Text style={styles.buttonText}>Pay Now</Text>
           </TouchableOpacity>
         </View>

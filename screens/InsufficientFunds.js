@@ -171,19 +171,6 @@ export default function MyPage() {
             <AntDesign name="user" size={24} color="white" />
           </TouchableOpacity>
         </View>
-{/* 
-        Footer
-        <View style={{ flexDirection: 'row', justifyContent: 'space-around',width:"100", alignItems: 'center', paddingBottom: 20, backgroundColor:"black"}}>
-          <TouchableOpacity>
-            <AntDesign name="home" size={24} color="black" />
-          </TouchableOpacity>
-          <TouchableOpacity>
-          <Entypo name="shop" size={24} color="white" backgroundColor="blue"/>
-          </TouchableOpacity>
-          <TouchableOpacity>
-          <AntDesign name="user" size={24} color="white" />
-          </TouchableOpacity>
-        </View> */}
       </View>
     </TouchableWithoutFeedback>
   );

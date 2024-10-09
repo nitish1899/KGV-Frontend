@@ -9,6 +9,7 @@ const { width, height } = Dimensions.get('window');
 
 const Orderdetails1 = ({ route, navigation }) => {
   const { data, orderId, user, referralCode } = route.params;
+  console.log('Orderdetails1 user', user);
   const [orderDetails, setOrderDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -56,18 +57,18 @@ const Orderdetails1 = ({ route, navigation }) => {
     }
   }, [razorpay_order_id, razorpay_payment_id, razorpay_signature]);
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('beforeRemove', (e) => {
-      // Prevent the default back action
-      e.preventDefault();
+  // useEffect(() => {
+  //   const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+  //     // Prevent the default back action
+  //     e.preventDefault();
 
-      // Navigate to Welcome1 when back is pressed
-      navigation.replace('Welcome1');
-    });
+  //     // Navigate to Welcome1 when back is pressed
+  //     navigation.replace('Welcome1');
+  //   });
 
-    // Cleanup the event listener when the component is unmounted
-    return unsubscribe;
-  }, [navigation]);
+  //   // Cleanup the event listener when the component is unmounted
+  //   return unsubscribe;
+  // }, [navigation]);
 
   if (loading) return <ActivityIndicator size="large" color="#0000ff" />;
   if (error) return <Text style={styles.errorText}>{error}</Text>;
@@ -170,7 +171,7 @@ const styles = StyleSheet.create({
     transform: [{ translateX: -100 }],
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#06264D',
+    backgroundColor: '#545a2c',
     padding: width * 0.03, // 3% of screen width for padding
     borderRadius: 5,
   },

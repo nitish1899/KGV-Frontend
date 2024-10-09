@@ -10,7 +10,7 @@ const { width, height } = Dimensions.get('window');
 const MultipleImageUpload = () => {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
-    const [dlno, setDlno] = useState('');
+    const [vehicleno, setVehicleno] = useState('');
     const [adhaarno, setAdhaarno] = useState('');
     const [email, setEmail] = useState('');
     const [dailyrunning, setDailyrunning] = useState('');
@@ -48,7 +48,7 @@ const MultipleImageUpload = () => {
         // Add form data fields
         formData.append('name', name);
         formData.append('phone', phone);
-        formData.append('dlno', dlno);
+        formData.append('vehicleno', vehicleno);
         formData.append('adhaarno', adhaarno);
         formData.append('email', email);
         formData.append('dailyrunning', dailyrunning);
@@ -115,7 +115,7 @@ const MultipleImageUpload = () => {
     const handleUpload = async () => {
         setLoading(true);
 
-        if (!name || !phone || !dlno || !adhaarno || !email || !dailyrunning) {
+        if (!name || !phone || !vehicleno || !adhaarno || !email || !dailyrunning) {
             Alert.alert('Missing Fields', 'Please fill out all the fields before submitting.');
             return;
         }
@@ -135,7 +135,7 @@ const MultipleImageUpload = () => {
                 const formDataWithoutImages = {
                     name,
                     phone,
-                    dlno,
+                    vehicleno,
                     adhaarno,
                     email,
                     dailyrunning,
@@ -226,8 +226,8 @@ const MultipleImageUpload = () => {
 
                 <TextInput
                     style={styles.input}
-                    value={dlno}
-                    onChangeText={setDlno}
+                    value={vehicleno}
+                    onChangeText={setVehicleno}
                     placeholder="Enter your RC number"
                     maxLength={10}
                 />

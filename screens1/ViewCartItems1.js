@@ -9,131 +9,6 @@ import CustomModal1 from './CustomModel1.js';
 const { width, height } = Dimensions.get('window');
 
 const ViewCartItems1 = ({ route, navigation }) => {
-    // console.log('route.params', route.params);
-    // const { visitorId: userId, visitorName, user } = route.params;
-    // const [cartId, setCartId] = useState(null);
-    // const [cartItems, setCartItems] = useState([]);
-    // const [wishlistItems, setWishlistItems] = useState([]);
-    // const [loading, setLoading] = useState(true);
-    // const [modalVisible, setModalVisible] = useState(false);
-
-    // useEffect(() => {
-    //     // Fetch cart ID
-    //     axios.get(`https://kgv-backend.onrender.com/api/cart/${userId}`)
-    //         .then(response => {
-    //             setCartId(response.data._id);
-    //         })
-    //         .catch(error => {
-    //             console.log('Error fetching cartId:', error);
-    //             // Alert.alert('Error', 'Unable to fetch cart information');
-    //             setLoading(false);
-    //         });
-    // }, [userId]);
-
-    // useEffect(() => {
-    //     if (cartId) {
-    //         // Fetch cart items
-    //         axios.get(`https://kgv-backend.onrender.com/api/cart/item/${cartId}`)
-    //             .then(response => {
-    //                 const items = response.data.cartItems;
-    //                 setCartItems(items);
-    //             })
-    //             .catch(error => {
-    //                 console.log('Error fetching cart items: ', error);
-    //                 // Alert.alert('Error', 'Unable to fetch cart items');
-    //             });
-    //     }
-
-    //     // Fetch wishlist items
-    //     axios.get(`https://kgv-backend.onrender.com/api/wishlist/${userId}`)
-    //         .then(response => {
-    //             const items = response.data.wishlistItems;
-    //             // console.log('wishlistsItems', items)
-    //             setWishlistItems(items);
-    //         })
-    //         .catch(error => {
-    //             console.log('Error fetching wishlist items:', error);
-    //             // Alert.alert('Error', 'Unable to fetch wishlist items');
-    //         })
-    //         .finally(() => {
-    //             setLoading(false);
-    //         });
-    // }, [cartId]);
-
-    // const handleMoveToWishlist = (itemId) => {
-    //     axios.post(`https://kgv-backend.onrender.com/api/wishlist/moveToWishlist/${itemId}`, { userId })
-    //         .then((response) => {
-    //             // Remove item from cart and add to wishlist
-    //             setCartItems(cartItems.filter(item => item._id !== itemId));
-    //             setWishlistItems(response.data.wishlistItems);
-    //             Alert.alert('Success', 'Item moved to wishlist');
-    //         })
-    //         .catch(error => {
-    //             console.log('Error moving item to wishlist:', error);
-    //             Alert.alert('Error', 'Unable to move item to wishlist');
-    //         });
-    // };
-
-    // const handleMoveToCart = (itemId) => {
-    //     axios.post(`https://kgv-backend.onrender.com/api/cart/moveToCart/${itemId}`, { userId })
-    //         .then((response) => {
-    //             // Remove item from wishlist and add to cart
-    //             setWishlistItems(wishlistItems.filter(item => item._id !== itemId));
-    //             setCartItems(response.data.cartItems);
-    //             Alert.alert('Success', 'Item moved to cart');
-    //         })
-    //         .catch(error => {
-    //             console.log('Error moving item to cart:', error);
-    //             Alert.alert('Error', 'Unable to move item to cart');
-    //         });
-    // };
-
-
-    // const handleDeleteCartItem = (itemId) => {
-    //     console.log('Attempting to delete item with ID:', itemId);
-    //     axios.delete(`https://kgv-backend.onrender.com/api/cart/cart/item/${itemId}`)
-    //         .then(() => {
-    //             setCartItems(cartItems.filter(item => item._id !== itemId));
-    //             Alert.alert('Success', 'Item removed from cart');
-    //         })
-    //         .catch(error => {
-    //             console.log('Error deleting item:', error);
-    //             Alert.alert('Error', 'Unable to delete item');
-    //         });
-    // };
-
-    // const handleDeleteWishlistItem = (itemId) => {
-    //     console.log('Attempting to delete item with ID:', itemId);
-    //     axios.delete(`https://kgv-backend.onrender.com/api/wishlist/${userId}/${itemId}`)
-    //         .then(() => {
-    //             setWishlistItems(wishlistItems.filter(item => item._id !== itemId));
-    //             Alert.alert('Success', 'Item removed from wishlist');
-    //         })
-    //         .catch(error => {
-    //             console.log('Error deleting item:', error);
-    //             Alert.alert('Error', 'Unable to delete item');
-    //         });
-    // };
-
-    // const handleAddItem = () => {
-    //     // Navigate to the screen where the user can add items to the cart and pass userId
-    //     navigation.navigate('Visitordetails1', { user });
-    // };
-
-    // const handleContinue = () => {
-    //     // Handle the continue action here
-    //     navigation.navigate('SummaryCart1', { visitorId: userId, visitorName, user });
-    // };
-
-    // if (loading) {
-    //     return (
-    //         <View style={styles.loadingContainer}>
-    //             <ActivityIndicator size="large" color="#00aaff" />
-    //             <Text style={styles.loadingText}>Loading...</Text>
-    //         </View>
-    //     );
-    // }
-
     const { visitorId: userId, visitorName, user } = route.params;
     const [cartId, setCartId] = useState(null);
     const [cartItems, setCartItems] = useState([]);
@@ -241,12 +116,12 @@ const ViewCartItems1 = ({ route, navigation }) => {
 
     const handleAddItem = () => {
         // Navigate to the screen where the user can add items to the cart and pass userId
-        navigation.navigate('Visitordetails', { user });
+        navigation.navigate('Visitordetails1', { user });
     };
 
     const handleContinue = () => {
         // Handle the continue action here
-        navigation.navigate('SummaryCart', { visitorId: userId, user });
+        navigation.navigate('SummaryCart1', { visitorId: userId, user });
     };
 
     if (loading) {

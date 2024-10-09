@@ -11,16 +11,6 @@ import TermsAndConditionsCheckbox from './TermsAndConditionsCheckbox';
 
 const { width, height } = Dimensions.get('window'); // Get screen width and height
 
-
-// const CustomCheckbox = ({ isChecked, onPress, label }) => (
-//     <TouchableOpacity style={styles.checkboxContainer} onPress={onPress}>
-//         <View style={[styles.checkbox, isChecked && styles.checkboxChecked]}>
-//             {isChecked && <Text style={styles.checkmark}>✔</Text>}
-//         </View>
-//         <Text style={styles.checkboxLabel}>{label}</Text>
-//     </TouchableOpacity>
-// );
-
 export default ({ navigation, route }) => {
     const { user } = route.params;
     const [keyboardVisible, setKeyboardVisible] = useState(false);
@@ -242,33 +232,6 @@ export default ({ navigation, route }) => {
                         handleAcceptTerms={handleAcceptTerms}
                     />
 
-                    {/* <TouchableOpacity
-                        onPress={() => navigation.navigate('TermsAndConditions', { onAccept: handleAcceptTerms })}
-                        style={styles.termsContainer}
-                    >
-                        <View style={styles.checkboxContainer}>
-                            <View style={[styles.checkbox, termsAccepted && styles.checkboxChecked]}>
-                                {termsAccepted && <Text style={styles.checkmark}>✔</Text>}
-                            </View>
-                            <Text style={styles.linkText}>Accept Terms and Conditions</Text>
-                        </View>
-                       
-                    </TouchableOpacity> */}
-
-                    {/* 
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate('TermsAndConditions', { onAccept: handleAcceptTerms })}
-                    >
-                        <Text style={styles.linkText}>View Terms and Conditions</Text>
-                    </TouchableOpacity> */}
-
-
-                    {/* <CustomCheckbox
-                        isChecked={termsAccepted}
-                        onPress={() => navigation.navigate('TermsAndConditions', { onAccept: handleAcceptTerms })}
-                        label="Accept Terms and Conditions"
-                    /> */}
-
                     <TouchableOpacity
                         style={[styles.button, { backgroundColor: termsAccepted ? '#06264D' : '#ccc' }]}
                         disabled={!termsAccepted}
@@ -277,22 +240,6 @@ export default ({ navigation, route }) => {
                         <Text style={styles.buttonText}>Submit</Text>
                         <Icon name="arrow-forward" size={24} color="#FFF" />
                     </TouchableOpacity>
-
-                    {/* <CustomCheckbox
-                        isChecked={termsAccepted}
-                        onPress={() => setTermsAccepted(!termsAccepted)}
-                        label="Accept Terms and Conditions"
-                    />
-                    <TouchableOpacity
-                        style={[styles.button, { backgroundColor: termsAccepted ? '#06264D' : '#ccc' }]}
-                        disabled={!termsAccepted}
-                        onPress={handleRegister}
-                    >
-                        <Text style={styles.buttonText}>Submit</Text>
-                        <Icon name="arrow-forward" size={24} color="#FFF" />
-                    </TouchableOpacity> */}
-
-
 
                 </KeyboardAwareScrollView>
 
@@ -451,156 +398,3 @@ const styles = StyleSheet.create({
     },
 
 });
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flexGrow: 1,
-//         alignItems: 'center',
-//         justifyContent: 'center'
-//     },
-//     input: {
-//         borderBottomWidth: 2,
-//         borderBottomColor: 'black',
-//         borderStyle: 'solid',
-//         padding: 10,
-//         width: '80%',
-//         marginTop: 10
-//     },
-//     contentContainer: {
-//         flexDirection: 'row',
-//         marginTop: 50,
-//         height: 140, // Set a fixed height or use percentage like '50%'
-//         width: '100%', // Ensure it spans the full width
-//     },
-//     kgvMitra: {
-//         marginTop: 10, // Adjust this value based on where you want to position the image
-//         marginLeft: -100,
-//         // backgroundColor: 'red',
-//         height: 1100,
-//         width: 600,
-//         // Adjust this value as well
-//     },
-//     pickerContainer: {
-//         borderBottomWidth: 2,
-//         borderBottomColor: 'black',
-//         marginTop: 10,
-//         width: '80%',
-//     },
-//     picker: {
-//         height: 50,
-//         width: '100%'
-//     },
-//     vehicledetails: {
-//         fontSize: 17,
-//         fontWeight: '700',
-//         color: '#FFF',
-//         marginBottom: 10,
-//         textAlign: 'center',
-//         marginTop: 65,
-//         marginRight: 10,
-//     },
-//     lottieButton: {
-//         width: 100,
-//         height: 100,
-//         marginTop: 20,
-//         marginLeft: 0
-//     },
-//     lottieAnimation: {
-//         marginLeft: 0,
-//         width: '100%',
-//         height: '100%',
-//     },
-//     backgroundAnimation: {
-//         width: 200,
-//         height: 200,
-//         alignSelf: 'center',
-//         position: 'absolute',
-//         bottom: -10,
-//         zIndex: -1
-//     },
-//     vehicleInputContainer: {
-//         flexDirection: 'row',
-//         justifyContent: 'space-between',
-//         width: '80%',
-//         paddingTop: 10,
-//         // marginTop: 10
-//     },
-//     vehicleInput: {
-//         borderBottomWidth: 2,
-//         borderBottomColor: 'black',
-//         padding: 10,
-//         width: '48%',
-//     },
-//     footer: {
-//         flexDirection: 'row',
-//         alignItems: 'center',
-//         justifyContent: 'space-between',
-//         marginTop: 20
-//     },
-//     footerImage: {
-//         width: 36,
-//         height: 36
-//     },
-//     footerTextContainer: {
-//         alignItems: 'center'
-//     },
-//     footerText: {
-//         color: 'black',
-//         fontSize: 10
-//     },
-//     footerFlag: {
-//         width: 24,
-//         height: 16
-//     },
-//     footerLogo: {
-//         width: 45,
-//         height: 36
-//     },
-//     button: {
-//         backgroundColor: '#06264D',
-//         padding: 15,
-//         borderRadius: 5,
-//         alignItems: 'center',
-//         flexDirection: 'row',
-//         marginTop: 90,
-//     },
-//     buttonText: {
-//         color: 'white',
-//         fontSize: 18,
-//         marginRight: 10,
-//     },
-//     overlayText: {
-//         position: 'absolute',
-//         top: '100%', // Adjust as needed
-//         left: '10%', // Adjust as needed
-//         color: '#FFF', // Text color
-//         fontSize: 20, // Adjust font size as needed
-//         fontWeight: 'bold',
-//         textAlign: 'center',
-//     },
-//     checkboxContainer: {
-//         flexDirection: 'row',
-//         alignItems: 'center',
-//         marginVertical: 10,
-//     },
-//     checkbox: {
-//         width: 20,
-//         height: 20,
-//         borderWidth: 1,
-//         borderColor: '#333',
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         marginRight: 10,
-//     },
-//     checkboxChecked: {
-//         backgroundColor: '#007acc',
-//     },
-//     checkmark: {
-//         color: '#FFF',
-//         fontSize: 14,
-//     },
-//     checkboxLabel: {
-//         fontSize: 14,
-//         color: '#333',
-//     },
-// });

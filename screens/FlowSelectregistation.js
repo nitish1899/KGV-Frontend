@@ -71,17 +71,3 @@ export default ({ navigation }) => {
         </StyledSafeAreaView>
     );
 };
-
-
-
-
-// import { View, Text } from 'react-native'
-// import React from 'react'
-
-// export default function FlowSelectregistation() {
-//   return (
-//     <View>
-//       <Text>FlowSelectregistation</Text>
-//     </View>
-//   )
-// }

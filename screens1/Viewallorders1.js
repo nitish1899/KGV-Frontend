@@ -101,37 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-// const styles = StyleSheet.create({
-//   gradient: {
-//     flex: 1,
-//   },
-//   container: {
-//     flex: 1,
-//     padding: 16,
-//     alignItems: 'center',
-//   },
-//   logo: {
-//     width: 150,
-//     height: 150,
-//     marginBottom: 20,
-//   },
-//   scrollViewContent: {
-//     width: '100%',
-//     alignItems: 'center',
-//   },
-//   order: {
-//     width: '90%',
-//     marginBottom: 10,
-//     padding: 10,
-//     backgroundColor: '#f0f0f0',
-//     borderRadius: 5,
-//   },
-//   pendingOrder: {
-//     backgroundColor: '#ffdddd', // Red background for pending orders
-//   },
-//   text: {
-//     color: '#000',
-//   },
-// });
-
 export default Viewallorders1;

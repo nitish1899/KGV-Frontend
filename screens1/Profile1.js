@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 
 const Profile1 = ({ route }) => {
     const { userId, user } = route.params;
+
+    console.log('profile user', user);
     const navigation = useNavigation();
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);

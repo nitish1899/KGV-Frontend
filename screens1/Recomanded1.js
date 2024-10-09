@@ -319,7 +319,7 @@ const styles = StyleSheet.create({
         marginRight: width * 0.02, // 2% of width
     },
     checkboxChecked: {
-        backgroundColor: '#06264D',
+        backgroundColor: '#545a2c',
     },
     checkboxLabel: {
         fontSize: width * 0.035, // 3.5% of width

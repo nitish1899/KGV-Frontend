@@ -147,10 +147,10 @@ export default function BikeDetails({ navigation, route }) {
                 <View style={styles.overlayTextContainer} >
                     <LetterByLetterText
                         texts1={[
-                            `Wow! Congratulations ${user.data.fullName} Now you can save ${savings} with KGV Mitr`
+                            `Wow! Congratulations ${user.data.fullName}. Now you can save ${savings} with KGV Mitra`
                         ]}
                         texts2={[
-                            `You also become environment saviour Estimated CO2 emissions over 3 years: ${carbonEmissions} kg`
+                            `You also become environment saviour. Estimated CO2 emissions over 3 years: ${carbonEmissions} kg`
                         ]}
                         style={styles.overlayText}
                         carbonEmissions={carbonEmissions}
@@ -174,7 +174,12 @@ export default function BikeDetails({ navigation, route }) {
                             onPress={() => setDetailsVisible(!detailsVisible)}
                             style={styles.clickableTextContainer}
                         >
-                            <Text style={styles.subTitle}>Estimation taken for 3 years {detailsVisible ? '  ▲' : '  ▼'}</Text>
+                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <Text style={styles.subTitle}>Estimation taken for 3 years {
+                                    detailsVisible ? <Text style={{ fontSize: 20, marginTop: 30 }}>˄</Text> : <Text style={{ fontSize: 20, marginTop: 30 }}>˅</Text>}
+                                </Text>
+                            </View>
+
                         </TouchableOpacity>
 
                         {detailsVisible && bikeDetails && (
@@ -221,6 +226,7 @@ export default function BikeDetails({ navigation, route }) {
                             />
                         </View>
                     )}
+
                     <CustomModal1
                         modalVisible={modalVisible}
                         setModalVisible={setModalVisible}
@@ -285,7 +291,7 @@ const styles = StyleSheet.create({
         left: width * 0.15,
         zIndex: 1,
         height: height * 0.08,
-        width: width * 0.4,
+        width: width * 0.33,
     },
     overlayText: {
         fontSize: width * 0.035,

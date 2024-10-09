@@ -130,7 +130,7 @@ const PaymentPage2 = ({ route, navigation }) => {
             console.log('Order saved successfully:', orderResponse.data);
             console.log('Order saved successfully:', orderResponse.data.order._id);
 
-            navigation.navigate('PaymentSuccess', {
+            navigation.navigate('PaymentSuccess1', {
               data,
               orderId: orderResponse.data.order._id,
               user
@@ -156,97 +156,6 @@ const PaymentPage2 = ({ route, navigation }) => {
       Alert.alert('Error', 'Something went wrong. Please try again.');
     }
   };
-
-
-  //   const handlePayment = async () => {
-  //     try {
-  //       const amountInPaise = Math.round(Number(amount) * 100);
-
-  //       // Fetch Razorpay key
-  //       const { data: { key } } = await axios.get("https://kgv-backend.onrender.com/api/getkey");
-
-  //       const { data: { order } } = await axios.post("https://kgv-backend.onrender.com/api/v1/bookingkit/checkout", { amount: amountInPaise });
-
-  //       const options = {
-  //         key,
-  //         amount: order.amount,
-  //         currency: "INR",
-  //         name: "Payment to KGV",
-  //         description: "Passionate about KGV",
-  //         image: "https://raw.githubusercontent.com/jagdish97897/kgvl/main/logokgv.cb6e50d56b55ae361cd7-removebg-preview.png",
-  //         order_id: order.id,
-  //         prefill: {
-  //           name: formData.fullName,
-  //           email: formData.email,
-  //           contact: formData.phoneNumber,
-  //         },
-  //         notes: {
-  //           fullName: formData.fullName,
-  //           phoneNumber: formData.phoneNumber,
-  //           address: formData.address,
-  //           aadhar: formData.aadhar,
-  //           dlno: formData.dlno,
-  //           dob: formData.dob,
-  //           gender: formData.gender,
-  //           email: formData.email,
-  //           amount: formData.amount,
-  //           pan: formData.pan,
-  //         },
-  //         theme: {
-  //           color: "#121212",
-  //         },
-  //       };
-
-  //       RazorpayCheckout.open(options)
-  //         .then(async (data) => {
-  //           console.log(`Payment Successful: ${data.razorpay_payment_id}`);
-
-  //           try {
-
-
-  //             // Verify cartId before proceeding
-  //             if (!cartId) {
-  //               console.log('Cart ID is missing');
-  //               Alert.alert('Error', 'Cart ID is missing. Cannot proceed with the order.');
-  //               return;
-  //             }
-
-  //             console.log('Sending order data:', { visitorId, cartId });
-
-  //             // Post the cart items to order schema
-  //             const orderResponse = await axios.post("https://kgv-backend.onrender.com/api/order/item", { visitorId, cartId, totalAmount, amountPaid: amount });
-  //             console.log('Order saved successfully:', orderResponse.data);
-  //             console.log('Order saved successfully:', orderResponse.data.order._id);
-
-  //             navigation.navigate('PaymentSuccess', {
-  //               data,
-  //               orderId: orderResponse.data.order._id,
-  //               user
-  //             });
-
-  //           } catch (orderError) {
-  //             // Log the error response for more details
-  //             if (orderError.response) {
-  //               console.log('Error response from API:', orderError.response.data);
-  //               Alert.alert('Error', `Failed to save order data: ${orderError.response.data.message}`);
-  //             } else {
-  //               console.log('Error saving order data:', orderError.message);
-  //               Alert.alert('Error', 'Failed to save order data.');
-  //             }
-  //           }
-  //         })
-  //         .catch((error) => {
-  //           console.log("Razorpay Error:", error);
-  //           Alert.alert(`Error: ${error.code} | ${error.description}`);
-  //         });
-  //     } catch (error) {
-  //       console.log("Error:", error);
-  //       Alert.alert('Error', 'Something went wrong. Please try again.');
-  //     }
-  //   };
-
-
-
 
   const generatePDF = async () => {
     const { uri } = await Print.printToFileAsync({ html: htmlContent });

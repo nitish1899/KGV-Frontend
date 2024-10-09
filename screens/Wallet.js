@@ -72,15 +72,6 @@ export default function MyPage() {
    >
      {({ handleChange, handleBlur, handleSubmit, values }) => (
        <View className="mt-[60]">
-        {/* <Text className="text-2xl">Rebid :</Text>
-         <TextInput className="m-[10%] bg-gray-200 text-black-200"
-           onChangeText={handleChange('walletBalance')}
-           onBlur={handleBlur('walletBalance')}
-           value={values.walletBalance}
-           placeholder='Enter Bid'
-           keyboardType="numeric"
-         /> */}
-         
         <View>
         <Text className="text-2xl mx-auto">Add Money to Wallet</Text>
          <TextInput className="m-[10%] mx-[120px] py-2 px-6 bg-gray-200 text-black-200"
