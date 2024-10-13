@@ -45,7 +45,7 @@ const PaymentSuccessnew = ({ route }) => {
                 <Text style={styles.detailText}>Vehicle No: {formData.vehicleno}</Text>
             </View>
 
-            <Text style={styles.text}>You will get all update at your mail.</Text>
+            <Text style={styles.text}> Thank you for participating in the contest. You will receive updates via email.</Text>
 
             <TouchableOpacity
                 style={styles.button}

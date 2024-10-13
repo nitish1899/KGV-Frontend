@@ -44,7 +44,7 @@ const Orderdetails = ({ route, navigation }) => {
           userId: user.data.userId,
           referralCode
         });
-        Alert.alert("Notification Sent", "Your payment verification notification has been sent successfully.");
+        Alert.alert("Notification Sent", "Payment notification has been sent on your mail successfully.");
       } catch (error) {
         console.log("Error sending notification:", error);
         Alert.alert("Notification Failed", "There was an error sending the notification.");
