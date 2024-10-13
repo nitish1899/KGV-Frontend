@@ -20,10 +20,10 @@ const Congratulation = ({ route }) => {
             const amountInPaise = Math.round(Number(amount));
 
             // Fetch Razorpay key
-            const { data: { key } } = await axios.get("https://kgv-backend.onrender.com/api/getkey");
+            const { data: { key } } = await axios.get("http://192.168.1.30:8005/api/getkey");
 
             // Create order
-            const { data: { order } } = await axios.post("https://kgv-backend.onrender.com/api/v1/payment/newcheckout", { amount: amountInPaise });
+            const { data: { order } } = await axios.post("http://192.168.1.30:8005/api/v1/payment/newcheckout", { amount: amountInPaise });
             const options = {
                 key,
                 amount: order.amount,
@@ -54,7 +54,7 @@ const Congratulation = ({ route }) => {
                 .then(async (data) => {
                     console.log(`Payment Successful: ${data.razorpay_payment_id}`);
 
-                    const verificationResponse = await axios.post("https://kgv-backend.onrender.com/api/v1/payment/contest/payment-verification", {
+                    const verificationResponse = await axios.post("http://192.168.1.30:8005/api/v1/payment/contest/payment-verification", {
                         ...data
                     });
 

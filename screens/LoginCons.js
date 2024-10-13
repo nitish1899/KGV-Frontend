@@ -30,7 +30,7 @@ export default ({ navigation }) => {
             const requestData = isOtpSent ? { phoneNumber, otp } : { phoneNumber };
 
             // Send request to the same endpoint
-            const response = await axios.get('https://kgv-backend.onrender.com/api/v1/consumer/login', requestData);
+            const response = await axios.get('http://192.168.1.30:8005/api/v1/consumer/login', requestData);
 
             if (response.status === 200) {
 

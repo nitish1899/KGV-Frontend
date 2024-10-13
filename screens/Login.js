@@ -3,9 +3,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView, Text, TextInput, StyleSheet, View, Image, TouchableOpacity, Keyboard, Alert, Dimensions } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import axios from 'axios';
-import Icon from 'react-native-vector-icons/Ionicons'; // Import Icon from react-native-vector-icons
+import Icon from 'react-native-vector-icons/Ionicons';
 import { CommonActions } from '@react-navigation/native';
-
 
 const { width, height } = Dimensions.get('window');
 
@@ -13,7 +12,7 @@ export default ({ navigation }) => {
     const [keyboardVisible, setKeyboardVisible] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [pin, setPin] = useState('');
-    const [isPinVisible, setIsPinVisible] = useState(false); // State to toggle pin visibility
+    const [isPinVisible, setIsPinVisible] = useState(false);
 
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
@@ -33,7 +32,7 @@ export default ({ navigation }) => {
         try {
             const requestData = { phoneNumber, pin };
 
-            const response = await axios.post('https://kgv-backend.onrender.com/api/v1/auth/login', requestData);
+            const response = await axios.post('http://192.168.1.30:8005/api/v1/auth/login', requestData);
 
             if (response.status === 200) {
                 Alert.alert('Success', 'Login successful');

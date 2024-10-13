@@ -3,39 +3,39 @@ import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-na
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
-const PaymentSuccessnew = ({ route }) => {
+const OtherPaymentSuccess = ({ route }) => {
     const navigation = useNavigation();
-    const { paymentId, formData } = route.params;
-    const [isParticipated, setIsParticipated] = useState(false);
-    console.log('formData', formData);
+    const { paymentId, userId } = route.params;
+    // const [isParticipated, setIsParticipated] = useState(false);
+    // console.log('formData', formData);//
 
     const handleSpinFeature = () => {
         // Navigate to the home screen or any other screen
-        navigation.navigate('Landing', { userId: formData.userId });
+        navigation.navigate('Welcome', { userId });
     };
 
-    useEffect(() => {
-        const userInfo = async () => {
-            try {
-                const response = await axios.get(`http://192.168.1.30:8005/api/files/user/${formData.phone}`);
-                console.log(response.data)
-                setIsParticipated(response.data.data.user.isParticipated);
-            } catch (error) {
-                console.error("Error fetching user info:", error);
-            }
-        };
+    // useEffect(() => {
+    //     const userInfo = async () => {
+    //         try {
+    //             const response = await axios.get(`http://192.168.1.30:8005/api/files/user/${formData.phone}`);
+    //             console.log(response.data)
+    //             setIsParticipated(response.data.data.user.isParticipated);
+    //         } catch (error) {
+    //             console.error("Error fetching user info:", error);
+    //         }
+    //     };
 
-        userInfo();
-    }, [formData.phone]); // Add formData.phone as a dependency
+    //     userInfo();
+    // }, [formData.phone]); // Add formData.phone as a dependency
 
     return (
         <SafeAreaView style={styles.container}>
 
-            <Text style={styles.successText}>Payment Successful!</Text>
+            <Text style={styles.successText}>Thank you for sharing the details.</Text>
 
-            <Text style={styles.paymentIdText}>Payment ID: {paymentId}</Text>
+            <Text style={styles.paymentIdText}> Token number: {paymentId}</Text>
 
-            <View style={styles.detailsContainer}>
+            {/* <View style={styles.detailsContainer}>
                 <Text style={styles.detailsTitle}>Payment Details:</Text>
                 <Text style={styles.detailText}>Name: {formData.name}</Text>
                 <Text style={styles.detailText}>Email: {formData.email}</Text>
@@ -43,7 +43,7 @@ const PaymentSuccessnew = ({ route }) => {
                 <Text style={styles.detailText}>Adhaar No: {formData.adhaarno}</Text>
                 <Text style={styles.detailText}>Daily Running: {formData.dailyrunning}</Text>
                 <Text style={styles.detailText}>Vehicle No: {formData.vehicleno}</Text>
-            </View>
+            </View> */}
 
             <Text style={styles.text}>You will get all update at your mail.</Text>
 
@@ -51,7 +51,7 @@ const PaymentSuccessnew = ({ route }) => {
                 style={styles.button}
                 onPress={handleSpinFeature}
             >
-                <Text style={styles.buttonText}>{isParticipated ? 'Already Participated' : 'Go To Main menu'}</Text>
+                <Text style={styles.buttonText}>Go To Main menu</Text>
             </TouchableOpacity>
         </SafeAreaView>
     );
@@ -123,4 +123,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default PaymentSuccessnew;
+export default OtherPaymentSuccess;

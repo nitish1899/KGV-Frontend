@@ -42,7 +42,7 @@ const SummaryCart = ({ route, navigation }) => {
     const { width, height } = useWindowDimensions();
 
     useEffect(() => {
-        axios.get(`https://kgv-backend.onrender.com/api/cart/${userId}`)
+        axios.get(`http://192.168.1.30:8005/api/cart/${userId}`)
             .then(response => {
                 setCartId(response.data._id);
             })
@@ -55,7 +55,7 @@ const SummaryCart = ({ route, navigation }) => {
 
     useEffect(() => {
         if (cartId) {
-            axios.get(`https://kgv-backend.onrender.com/api/cart/item/${cartId}`)
+            axios.get(`http://192.168.1.30:8005/api/cart/item/${cartId}`)
                 .then(response => {
                     const items = response.data.cartItems;
                     setCartItems(items);
@@ -77,7 +77,7 @@ const SummaryCart = ({ route, navigation }) => {
     }, [cartId]);
 
     useEffect(() => {
-        axios.get(`https://kgv-backend.onrender.com/api/v1/visitor/details/${userId}`)
+        axios.get(`http://192.168.1.30:8005/api/v1/visitor/details/${userId}`)
             .then(response => {
                 if (response.data.success) {
                     setUserDetails(response.data.data[0]);

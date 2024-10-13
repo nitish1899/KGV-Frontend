@@ -21,7 +21,7 @@ const Orderdetails = ({ route, navigation }) => {
   useEffect(() => {
     const fetchOrderDetails = async () => {
       try {
-        const response = await axios.get(`https://kgv-backend.onrender.com/api/order/orders/${orderId}`);
+        const response = await axios.get(`http://192.168.1.30:8005/api/order/orders/${orderId}`);
         setOrderDetails(response.data.order);
         console.log(response.data)
       } catch (err) {
@@ -37,14 +37,14 @@ const Orderdetails = ({ route, navigation }) => {
   useEffect(() => {
     const sendNotification = async () => {
       try {
-        const response = await axios.post("https://kgv-backend.onrender.com/api/v1/bookingkit/booking-verification", {
+        const response = await axios.post("http://192.168.1.30:8005/api/v1/bookingkit/booking-verification", {
           razorpay_order_id,
           razorpay_payment_id,
           razorpay_signature,
           userId: user.data.userId,
           referralCode
         });
-        Alert.alert("Notification Sent", "Payment notification has been sent on your mail successfully.");
+        Alert.alert("Notification Sent", "Your payment verification notification has been sent successfully.");
       } catch (error) {
         console.log("Error sending notification:", error);
         Alert.alert("Notification Failed", "There was an error sending the notification.");
