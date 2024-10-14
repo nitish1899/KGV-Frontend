@@ -27,7 +27,7 @@ const Profile = ({ route }) => {
         // Fetch data from the API
         const fetchUserData = async () => {
             try {
-                const response = await fetch(`http://192.168.1.30:8005/api/v1/visitor/details/${userId}`);
+                const response = await fetch(`http://192.168.1.9:8005/api/v1/visitor/details/${userId}`);
                 const result = await response.json();
                 if (result.success) {
                     const user = result.data[0];
@@ -65,7 +65,7 @@ const Profile = ({ route }) => {
         try {
             const { _id, __v, ...updateData } = formData;
 
-            const response = await fetch(`http://192.168.1.30:8005/api/v1/visitor/user/${userId}`, {
+            const response = await fetch(`http://192.168.1.9:8005/api/v1/visitor/user/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

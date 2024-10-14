@@ -25,7 +25,7 @@ export default ({ navigation }) => {
     const handleRegister = async () => {
         console.log('Form Data:', formData);
         try {
-            const response = await fetch('http://192.168.1.30:8005/api/v1/vsp/vspsignup', {
+            const response = await fetch('http://192.168.1.9:8005/api/v1/vsp/vspsignup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

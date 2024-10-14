@@ -29,6 +29,8 @@ import PaymentPage2 from './screens1/PaymentPage2';
 import PaymentSuccess1 from './screens1/PaymentSuccess1';
 import Viewallorders1 from './screens1/Viewallorders1';
 import TermsAndConditions1 from './screens1/TermsAndConditions1';
+import KitBookingPaymentSuccess1 from './screens1/KitBookingPaymentSuccess1';
+import PaymentImageUpload1 from './screens1/PaymentImageUpload1';
 
 const Stack = createNativeStackNavigator();
 
@@ -65,6 +67,8 @@ export default () => {
             <Stack.Screen name="BookingCheckout2" component={BookingCheckout2} />
             <Stack.Screen name="PaymentSuccess1" component={PaymentSuccess1} />
             <Stack.Screen name="Viewallorders1" component={Viewallorders1} />
+            <Stack.Screen name="PaymentImageUpload1" component={PaymentImageUpload1} />
+            <Stack.Screen name="KitBookingPaymentSuccess1" component={KitBookingPaymentSuccess1} />
             <Stack.Screen name="TermsAndConditions1" component={TermsAndConditions1} />
          </Stack.Navigator>
       </>

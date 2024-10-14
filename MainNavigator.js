@@ -31,6 +31,10 @@ import Register1 from './screens/Register1';
 import SpinFeature from './screens/SpinFeature';
 import TermsAndConditions from './screens/TermsAndConditions';
 import PremiumPayment from './screens/PremiumPayment';
+import KitBookingPaymentSuccess from './screens/KitBookingPaymentSuccess';
+import PaymentImageUpload from './screens/PaymentImageUpload';
+import ContestpaymentImageUpload from './screens/ContestpaymentImageUpload';
+import PrimumpaymentImageUpload from './screens/PrimumpaymentImageUpload';
 
 const Stack = createNativeStackNavigator();
 
@@ -69,6 +73,10 @@ export default () => {
             <Stack.Screen name="SpinFeature" component={SpinFeature} />
             <Stack.Screen name="TermsAndConditions" component={TermsAndConditions} />
             <Stack.Screen name="PremiumPayment" component={PremiumPayment} />
+            <Stack.Screen name="PaymentImageUpload" component={PaymentImageUpload} />
+            <Stack.Screen name="KitBookingPaymentSuccess" component={KitBookingPaymentSuccess} />
+            <Stack.Screen name="ContestpaymentImageUpload" component={ContestpaymentImageUpload} />
+            <Stack.Screen name="PrimumpaymentImageUpload" component={PrimumpaymentImageUpload} />
             <Stack.Screen name="MainNavigator1" component={MainNavigator1} />
          </Stack.Navigator>
       </>

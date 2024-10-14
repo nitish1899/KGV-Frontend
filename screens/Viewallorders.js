@@ -18,7 +18,7 @@ const Viewallorders = ({ route }) => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get(`http://192.168.1.30:8005/api/order/allorders/${visitorId}`);
+        const response = await axios.get(`http://192.168.1.9:8005/api/order/allorders/${visitorId}`);
         setOrders(response.data.orders);
       } catch (error) {
         console.log('Error fetching orders:', error);

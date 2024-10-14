@@ -71,266 +71,285 @@ const PaymentPage1 = ({ route, navigation }) => {
   const totalAmount = totalBeforeTax + totalTax + totalInstallationFee;
   const totalAmountToBePaid = totalAmount - totalBookingAmount;
 
-
-
-  const handlePayment = async () => {
-    try {
-      const amountInPaise = Math.round(Number(amount) * 100);
-
-      // Fetch Razorpay key
-      const { data: { key } } = await axios.get("https://kgv-backend.onrender.com/api/getkey");
-
-      const { data: { order } } = await axios.post("https://kgv-backend.onrender.com/api/v1/bookingkit/checkout", { amount: amountInPaise });
-
-      const options = {
-        key,
-        amount: order.amount,
-        currency: "INR",
-        name: "Payment to KGV",
-        description: "Passionate about KGV",
-        image: "https://raw.githubusercontent.com/jagdish97897/kgvl/main/logokgv.cb6e50d56b55ae361cd7-removebg-preview.png",
-        order_id: order.id,
-        prefill: {
-          name: formData.fullName,
-          email: formData.email,
-          contact: formData.phoneNumber,
-        },
-        notes: {
-          fullName: formData.fullName,
-          phoneNumber: formData.phoneNumber,
-          address: formData.address,
-          aadhar: formData.aadhar,
-          dlno: formData.dlno,
-          dob: formData.dob,
-          gender: formData.gender,
-          email: formData.email,
-          amount: formData.amount,
-          pan: formData.pan,
-        },
-        theme: {
-          color: "#121212",
-        },
-      };
-
-      RazorpayCheckout.open(options)
-        .then(async (data) => {
-          console.log(`Payment Successful: ${data.razorpay_payment_id}`);
-
-          try {
-
-
-            // Verify cartId before proceeding
-            if (!cartId) {
-              console.log('Cart ID is missing');
-              Alert.alert('Error', 'Cart ID is missing. Cannot proceed with the order.');
-              return;
-            }
-
-            console.log('Sending order data:', { visitorId, cartId });
-
-            // Post the cart items to order schema
-            const orderResponse = await axios.post("https://kgv-backend.onrender.com/api/order/item", { visitorId, cartId, totalAmount, amountPaid: amount });
-            // console.log('Order saved successfully:', orderResponse.data);
-            // console.log('Order saved successfully:', orderResponse.data.order._id);
-            console.log('PaymentPage1 user', user);
-
-            navigation.navigate('PaymentSuccess1', {
-              data,
-              orderId: orderResponse.data.order._id,
-              user,
-              referralCode: buyerDetails.referralCode
-            });
-
-          } catch (orderError) {
-            // Log the error response for more details
-            if (orderError.response) {
-              console.log('Error response from API:', orderError.response.data);
-              Alert.alert('Error', `Failed to save order data: ${orderError.response.data.message}`);
-            } else {
-              console.log('Error saving order data:', orderError.message);
-              Alert.alert('Error', 'Failed to save order data.');
-            }
-          }
-
-        })
-        .catch((error) => {
-          console.log("Razorpay Error:", error);
-          Alert.alert(`Error: ${error.code} | ${error.description}`);
-        });
-    } catch (error) {
-      console.log("Error:", error);
-      Alert.alert('Error', 'Something went wrong. Please try again.');
+  const handlePayment = () => {
+    if (formData && user && visitorId && cartId && totalPrice) {
+      navigation.navigate('PaymentImageUpload1', {
+        formData,
+        user,
+        amount: formData.amount,
+        visitorId,
+        cartId,
+        totalPrice
+      });
+    } else {
+      // Handle case where required data is missing
+      console.log('Missing required data for navigation.');
     }
   };
 
+
   const htmlContent = `
-<style>
-        body {
-            font-family: 'Helvetica Neue', sans-serif;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-            background-color: #f9f9f9;
-        }
-        h1, h2 {
-            color: #34495e;
-            text-align: left;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 26px;
-            border-bottom: 2px solid #34495e;
-            padding-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-        h2 {
-            font-size: 20px;
-            margin-top: 40px;
-            text-transform: uppercase;
-        }
-        p {
-            font-size: 14px;
-            line-height: 1.8;
-        }
-        .company-details, .buyer-details, .summary {
-            margin-bottom: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px 15px;
-            text-align: left;
-            font-size: 14px;
-        }
-        th {
-            background-color: #2c3e50;
-            color: white;
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: #f4f4f4;
-        }
-        tr:hover {
-            background-color: #ecf0f1;
-        }
-        .summary {
-            background-color: #ecf0f1;
-            padding: 20px;
-            border-radius: 10px;
-            font-size: 15px;
-        }
-        .summary p {
-            font-weight: bold;
-            font-size: 16px;
-        }
-        .summary p span {
-            font-weight: normal;
-            float: right;
-        }
-        footer {
-            text-align: center;
-            color: black;
-            font-size: 12px;
-            color: #888;
-            margin-top: 40px;
-        }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 0 0 20px 0;
-        }
-        .container img {
-            width: 100px;
-            height: 100px;
-        }
-        .container .text {
-            max-width: 400px;
-        }
-        .company-info, .buyer-info {
-            width: 48%;
-        }
-        .company-info p, .buyer-info p {
-            margin: 5px 0;
-        }
-        @media print {
-            body {
-                padding: 10px;
-            }
-            .container {
-                flex-direction: row;
-                align-items: flex-start;
-            }
-        }
-    </style>
-
-    <div class="container">
-        <img src="https://raw.githubusercontent.com/jagdish97897/weatherapp/refs/heads/main/kgv.png" alt="Company Logo">
-        <div class="text">
-            <h1>Billing Details</h1>
-        </div>
-        <div class="company-info">
-            <p><strong>Company Name:</strong> Karishma Global Ventures LLP</p>
-            <p><strong>Company Address:</strong> 609, Pearls Omaxe Tower 2, Pitampura, Netaji Subhash Place, New Delhi, 110034</p>
-            <p><strong>Email:</strong> team@kgvl.co.in</p>
-            <p><strong>Invoice Number:</strong> #12345</p>
-            <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
-            <p><strong>GSTIN:</strong> 07ABAFK4368C1ZJ</p>
-        </div>
-    </div>
-
-    <div class="buyer-info">
-        <p><strong>Buyer:</strong> ${buyerDetails.fullName}</p>
-        <p><strong>Address:</strong> ${buyerDetails.address}</p>
-        <p><strong>Phone Number:</strong> ${buyerDetails.phoneNumber}</p>
-    </div>
-
-    <h2>Cart Items</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>S.No</th>
-                <th>Product Name</th>
-                <th>Rate</th>
-                <th>Addons</th>
-                <th>IGST</th>
-                <th>Total Amount</th>
-            </tr>
-        </thead>
-        <tbody>
-            ${cartItems.map((item, index) => `
-                <tr>
-                    <td>${index + 1}</td>
-                    <td>${item.item.name}</td>
-                    <td>₹${item.item.kitPrice}</td>
-                    <td>${item.item.addons.map(addon => `${addon.name} - ₹${addon.price}`).join('<br>')}</td>
-                    <td>18%</td>
-                    <td>₹${item.item.totalPrice}</td>
-                </tr>
-            `).join('')}
-        </tbody>
-    </table>
-
-    <h2>Summary</h2>
-    <div class="summary">
-        <p>Total Amount Before Tax: <span>₹${totalBeforeTax}</span></p>
-        <p>Total Tax Amount: <span>₹${totalTax}</span></p>
-        <p>Total Installation Amount (₹5000/kit): <span>₹${totalInstallationFee}</span></p>
-        <p>Total Amount: <span>₹${totalAmount}</span></p>
-        <p>Total Booking Amount (₹5000/kit): <span>₹${totalBookingAmount}</span></p>
-        <p>Total Amount to be Paid: <span>₹${totalAmountToBePaid}</span></p>
-    </div>
-
-    <footer>
-        <p>Thank you for your purchase! | For any query, please contact us at <a href="http://kgvl.co.in/" target="_blank">KGV</a> | team@kgvl.co.in</p>
-    </footer>
+jhjjkh
     `;
+
+  // const handlePayment = async () => {
+  //   try {
+  //     const amountInPaise = Math.round(Number(amount) * 100);
+
+  //     // Fetch Razorpay key
+  //     const { data: { key } } = await axios.get("https://kgv-backend.onrender.com/api/getkey");
+
+  //     const { data: { order } } = await axios.post("https://kgv-backend.onrender.com/api/v1/bookingkit/checkout", { amount: amountInPaise });
+
+  //     const options = {
+  //       key,
+  //       amount: order.amount,
+  //       currency: "INR",
+  //       name: "Payment to KGV",
+  //       description: "Passionate about KGV",
+  //       image: "https://raw.githubusercontent.com/jagdish97897/kgvl/main/logokgv.cb6e50d56b55ae361cd7-removebg-preview.png",
+  //       order_id: order.id,
+  //       prefill: {
+  //         name: formData.fullName,
+  //         email: formData.email,
+  //         contact: formData.phoneNumber,
+  //       },
+  //       notes: {
+  //         fullName: formData.fullName,
+  //         phoneNumber: formData.phoneNumber,
+  //         address: formData.address,
+  //         aadhar: formData.aadhar,
+  //         dlno: formData.dlno,
+  //         dob: formData.dob,
+  //         gender: formData.gender,
+  //         email: formData.email,
+  //         amount: formData.amount,
+  //         pan: formData.pan,
+  //       },
+  //       theme: {
+  //         color: "#121212",
+  //       },
+  //     };
+
+  //     RazorpayCheckout.open(options)
+  //       .then(async (data) => {
+  //         console.log(`Payment Successful: ${data.razorpay_payment_id}`);
+
+  //         try {
+
+
+  //           // Verify cartId before proceeding
+  //           if (!cartId) {
+  //             console.log('Cart ID is missing');
+  //             Alert.alert('Error', 'Cart ID is missing. Cannot proceed with the order.');
+  //             return;
+  //           }
+
+  //           console.log('Sending order data:', { visitorId, cartId });
+
+  //           // Post the cart items to order schema
+  //           const orderResponse = await axios.post("https://kgv-backend.onrender.com/api/order/item", { visitorId, cartId, totalAmount, amountPaid: amount });
+  //           // console.log('Order saved successfully:', orderResponse.data);
+  //           // console.log('Order saved successfully:', orderResponse.data.order._id);
+  //           console.log('PaymentPage1 user', user);
+
+  //           navigation.navigate('PaymentSuccess1', {
+  //             data,
+  //             orderId: orderResponse.data.order._id,
+  //             user,
+  //             referralCode: buyerDetails.referralCode
+  //           });
+
+  //         } catch (orderError) {
+  //           // Log the error response for more details
+  //           if (orderError.response) {
+  //             console.log('Error response from API:', orderError.response.data);
+  //             Alert.alert('Error', `Failed to save order data: ${orderError.response.data.message}`);
+  //           } else {
+  //             console.log('Error saving order data:', orderError.message);
+  //             Alert.alert('Error', 'Failed to save order data.');
+  //           }
+  //         }
+
+  //       })
+  //       .catch((error) => {
+  //         console.log("Razorpay Error:", error);
+  //         Alert.alert(`Error: ${error.code} | ${error.description}`);
+  //       });
+  //   } catch (error) {
+  //     console.log("Error:", error);
+  //     Alert.alert('Error', 'Something went wrong. Please try again.');
+  //   }
+  // };
+
+//   const htmlContent = `
+// <style>
+//         body {
+//             font-family: 'Helvetica Neue', sans-serif;
+//             margin: 0;
+//             padding: 20px;
+//             color: #333;
+//             background-color: #f9f9f9;
+//         }
+//         h1, h2 {
+//             color: #34495e;
+//             text-align: left;
+//             margin-bottom: 20px;
+//         }
+//         h1 {
+//             font-size: 26px;
+//             border-bottom: 2px solid #34495e;
+//             padding-bottom: 10px;
+//             text-transform: uppercase;
+//             letter-spacing: 1.5px;
+//         }
+//         h2 {
+//             font-size: 20px;
+//             margin-top: 40px;
+//             text-transform: uppercase;
+//         }
+//         p {
+//             font-size: 14px;
+//             line-height: 1.8;
+//         }
+//         .company-details, .buyer-details, .summary {
+//             margin-bottom: 20px;
+//         }
+//         table {
+//             width: 100%;
+//             border-collapse: collapse;
+//             margin: 30px 0;
+//             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+//         }
+//         th, td {
+//             border: 1px solid #ddd;
+//             padding: 10px 15px;
+//             text-align: left;
+//             font-size: 14px;
+//         }
+//         th {
+//             background-color: #2c3e50;
+//             color: white;
+//             font-weight: bold;
+//         }
+//         tr:nth-child(even) {
+//             background-color: #f4f4f4;
+//         }
+//         tr:hover {
+//             background-color: #ecf0f1;
+//         }
+//         .summary {
+//             background-color: #ecf0f1;
+//             padding: 20px;
+//             border-radius: 10px;
+//             font-size: 15px;
+//         }
+//         .summary p {
+//             font-weight: bold;
+//             font-size: 16px;
+//         }
+//         .summary p span {
+//             font-weight: normal;
+//             float: right;
+//         }
+//         footer {
+//             text-align: center;
+//             color: black;
+//             font-size: 12px;
+//             color: #888;
+//             margin-top: 40px;
+//         }
+//         .container {
+//             display: flex;
+//             justify-content: space-between;
+//             align-items: center;
+//             margin: 0 0 20px 0;
+//         }
+//         .container img {
+//             width: 100px;
+//             height: 100px;
+//         }
+//         .container .text {
+//             max-width: 400px;
+//         }
+//         .company-info, .buyer-info {
+//             width: 48%;
+//         }
+//         .company-info p, .buyer-info p {
+//             margin: 5px 0;
+//         }
+//         @media print {
+//             body {
+//                 padding: 10px;
+//             }
+//             .container {
+//                 flex-direction: row;
+//                 align-items: flex-start;
+//             }
+//         }
+//     </style>
+
+//     <div class="container">
+//         <img src="https://raw.githubusercontent.com/jagdish97897/weatherapp/refs/heads/main/kgv.png" alt="Company Logo">
+//         <div class="text">
+//             <h1>Billing Details</h1>
+//         </div>
+//         <div class="company-info">
+//             <p><strong>Company Name:</strong> Karishma Global Ventures LLP</p>
+//             <p><strong>Company Address:</strong> 609, Pearls Omaxe Tower 2, Pitampura, Netaji Subhash Place, New Delhi, 110034</p>
+//             <p><strong>Email:</strong> team@kgvl.co.in</p>
+//             <p><strong>Invoice Number:</strong> #12345</p>
+//             <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
+//             <p><strong>GSTIN:</strong> 07ABAFK4368C1ZJ</p>
+//         </div>
+//     </div>
+
+//     <div class="buyer-info">
+//         <p><strong>Buyer:</strong> ${buyerDetails.fullName}</p>
+//         <p><strong>Address:</strong> ${buyerDetails.address}</p>
+//         <p><strong>Phone Number:</strong> ${buyerDetails.phoneNumber}</p>
+//     </div>
+
+//     <h2>Cart Items</h2>
+//     <table>
+//         <thead>
+//             <tr>
+//                 <th>S.No</th>
+//                 <th>Product Name</th>
+//                 <th>Rate</th>
+//                 <th>Addons</th>
+//                 <th>IGST</th>
+//                 <th>Total Amount</th>
+//             </tr>
+//         </thead>
+//         <tbody>
+//             ${cartItems.map((item, index) => `
+//                 <tr>
+//                     <td>${index + 1}</td>
+//                     <td>${item.item.name}</td>
+//                     <td>₹${item.item.kitPrice}</td>
+//                     <td>${item.item.addons.map(addon => `${addon.name} - ₹${addon.price}`).join('<br>')}</td>
+//                     <td>18%</td>
+//                     <td>₹${item.item.totalPrice}</td>
+//                 </tr>
+//             `).join('')}
+//         </tbody>
+//     </table>
+
+//     <h2>Summary</h2>
+//     <div class="summary">
+//         <p>Total Amount Before Tax: <span>₹${totalBeforeTax}</span></p>
+//         <p>Total Tax Amount: <span>₹${totalTax}</span></p>
+//         <p>Total Installation Amount (₹5000/kit): <span>₹${totalInstallationFee}</span></p>
+//         <p>Total Amount: <span>₹${totalAmount}</span></p>
+//         <p>Total Booking Amount (₹5000/kit): <span>₹${totalBookingAmount}</span></p>
+//         <p>Total Amount to be Paid: <span>₹${totalAmountToBePaid}</span></p>
+//     </div>
+
+//     <footer>
+//         <p>Thank you for your purchase! | For any query, please contact us at <a href="http://kgvl.co.in/" target="_blank">KGV</a> | team@kgvl.co.in</p>
+//     </footer>
+//     `;
 
   const generatePDF = async () => {
     const { uri } = await Print.printToFileAsync({ html: htmlContent });

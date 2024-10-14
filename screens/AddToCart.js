@@ -27,7 +27,7 @@ const AddonitemToCart = ({ route }) => {
     const navigation = useNavigation();
 
     useEffect(() => {
-        axios.get(`http://192.168.1.30:8005/api/kits/search/${kitName}`)
+        axios.get(`http://192.168.1.9:8005/api/kits/search/${kitName}`)
             .then(response => {
                 if (response.data.success) {
                     setAddonItems(response.data.data.addonItems);
@@ -76,7 +76,7 @@ const AddonitemToCart = ({ route }) => {
             visitorId,
         };
 
-        axios.post('http://192.168.1.30:8005/api/cart/kit/addons', data)
+        axios.post('http://192.168.1.9:8005/api/cart/kit/addons', data)
             .then(response => {
                 if (response.data.updatedCartItem) {
                     Alert.alert('Success', 'Addons added to cart successfully!');

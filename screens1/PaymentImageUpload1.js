@@ -10,7 +10,7 @@ const { width, height } = Dimensions.get('window');
 const scaleWidth = (size) => (width / 375) * size; // 375 is base screen width (iPhone X)
 const scaleHeight = (size) => (height / 812) * size; // 812 is base screen height (iPhone X)
 
-const PaymentImageUpload = ({ route }) => {
+const PaymentImageUpload1 = ({ route }) => {
   // Destructure parameters from the route
   const { formData, amount, visitorId, cartId } = route.params;
   const navigation = useNavigation();
@@ -67,7 +67,7 @@ const PaymentImageUpload = ({ route }) => {
       setCartId('');
       setAmount('');
 
-      navigation.navigate("KitBookingPaymentSuccess", {
+      navigation.navigate("KitBookingPaymentSuccess1", {
         paymentProofId: response.data.data._id,
         userId: visitorId
       });
@@ -79,7 +79,7 @@ const PaymentImageUpload = ({ route }) => {
 
 
   return (
-    <LinearGradient colors={['#06264D', "#FFF"]} style={{ flex: 1 }}>
+    <LinearGradient colors={['#545a2c', '#FFF']} style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1, padding: 40 }}>
         <View style={styles.headingContainer}>
           <Text style={styles.headingText}>Payment Information</Text>
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PaymentImageUpload;
+export default PaymentImageUpload1;
 
 
 // import React, { useState } from 'react';

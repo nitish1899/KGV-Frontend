@@ -22,7 +22,7 @@ export default ({ navigation }) => {
 
     const handleRegister = async () => {
         try {
-            const response = await fetch('http://192.168.1.30:8005/api/v1/visitor/signup', {
+            const response = await fetch('http://192.168.1.9:8005/api/v1/visitor/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
