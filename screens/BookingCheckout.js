@@ -35,7 +35,7 @@ const BookingCheckout = ({ route }) => {
   useEffect(() => {
     const fetchVisitorDetails = async () => {
       try {
-        const response = await axios.get(`http://192.168.1.9:8005/api/v1/visitor/details/${visitorId}`);
+        const response = await axios.get(`https://kgv-backend.onrender.com/api/v1/visitor/details/${visitorId}`);
         if (response.data.success) {
           const visitorData = response.data.data[0];
           const itemsCount = Number(totalItems);

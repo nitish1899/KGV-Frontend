@@ -15,16 +15,81 @@ const Congratulation = ({ route }) => {
 
     console.log("hello", formData);
 
-    const handlePayment = () => {
-        if (formData && formData.userId && amount) {
-            navigation.navigate('ContestpaymentImageUpload', {
-                formData,
-                userId: formData.userId,
-                amount
-            });
-        } else {
-            // Handle case where required data is missing
-            console.log('Missing required data for navigation.');
+    // const handlePayment = () => {
+    //     if (formData && formData.userId && amount) {
+    //         navigation.navigate('ContestpaymentImageUpload', {
+    //             formData,
+    //             userId: formData.userId,
+    //             amount
+    //         });
+    //     } else {
+    //         // Handle case where required data is missing
+    //         console.log('Missing required data for navigation.');
+    //     }
+    // };
+
+
+    const handlePayment = async () => {
+        try {
+            const amountInPaise = Math.round(Number(amount));
+
+            // Fetch Razorpay key
+            const { data: { key } } = await axios.get("https://kgv-backend.onrender.com/api/getkey");
+
+            // Create order
+            const { data: { order } } = await axios.post("https://kgv-backend.onrender.com/api/v1/payment/newcheckout", { amount: amountInPaise });
+            const options = {
+                key,
+                amount: order.amount,
+                currency: "INR",
+                name: "Payment to KGV",
+                description: "Passionate about KGV",
+                image: "https://raw.githubusercontent.com/jagdish97897/kgvl/main/logokgv.cb6e50d56b55ae361cd7-removebg-preview.png",
+                order_id: order.id,
+                prefill: {
+                    name: formData.name,
+                    email: formData.email,
+                    contact: formData.phone,
+                },
+                notes: {
+                    name: formData.name,
+                    phone: formData.phone,
+                    adhaarno: formData.adhaarno,
+                    dailyrunning: formData.dailyrunning,
+                    vehicleno: formData.vehicleno,
+                    email: formData.email,
+                },
+                theme: {
+                    color: "#121212",
+                },
+            };
+
+            RazorpayCheckout.open(options)
+                .then(async (data) => {
+                    console.log(`Payment Successful: ${data.razorpay_payment_id}`);
+
+                    const verificationResponse = await axios.post("https://kgv-backend.onrender.com/api/v1/payment/contest/payment-verification", {
+                        ...data
+                    });
+
+                    if (verificationResponse.data.success) {
+                        // Navigate to the success screen
+                        navigation.navigate('PaymentSuccessnew', {
+                            paymentId: data.razorpay_payment_id,
+                            formData,
+                        });
+                    } else {
+                        // Handle failure (if any)
+                        Alert.alert('Payment Verification Failed', 'Please contact support.');
+                    }
+                })
+                .catch((error) => {
+                    console.log("Razorpay Error:", error);
+                    Alert.alert(`Error: ${error.code} | ${error.description}`);
+                });
+        } catch (error) {
+            console.log("Error:", error);
+            Alert.alert('Error', 'Something went wrong. Please try again.');
         }
     };
 

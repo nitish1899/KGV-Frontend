@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const KitBookingPaymentSuccess = ({ route }) => {
     const navigation = useNavigation();
-    const { paymentProofId, userId } = route.params;
+    const { paymentProofId, userId, contestParticipation } = route.params;
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -16,7 +16,7 @@ const KitBookingPaymentSuccess = ({ route }) => {
         const fetchUser = async () => {
             try {
 
-                const userData = await axios.get(`http://192.168.1.9:8005/api/v1/visitor/details/${userId}`);
+                const userData = await axios.get(`https://kgv-backend.onrender.com/api/v1/visitor/details/${userId}`);
                 setUser(userData);
             } catch (error) {
                 console.error('Failed to fetch user:', error);
@@ -29,7 +29,11 @@ const KitBookingPaymentSuccess = ({ route }) => {
     }, [userId]);
 
     const handleClick = () => {
-        navigation.navigate('Welcome', { user });
+        if (contestParticipation) {
+            navigation.navigate('Landing');
+        } else {
+            navigation.navigate('Welcome', { user });
+        }
     };
 
     if (loading) {

@@ -16,7 +16,7 @@ const KitBookingPaymentSuccess1 = ({ route }) => {
         const fetchUser = async () => {
             try {
 
-                const userData = await axios.get(`http://192.168.1.9:8005/api/v1/visitor/details/${userId}`);
+                const userData = await axios.get(`https://kgv-backend.onrender.com/api/v1/visitor/details/${userId}`);
                 setUser(userData);
             } catch (error) {
                 console.error('Failed to fetch user:', error);

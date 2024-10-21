@@ -17,8 +17,8 @@ const PaymentSuccessnew = ({ route }) => {
     useEffect(() => {
         const userInfo = async () => {
             try {
-                const response = await axios.get(`http://192.168.1.9:8005/api/files/user/${formData.phone}`);
-                console.log(response.data)
+                const response = await axios.get(`https://kgv-backend.onrender.com/api/files/user/${formData.phone}`);
+                console.log('user Response', response.data)
                 setIsParticipated(response.data.data.user.isParticipated);
             } catch (error) {
                 console.error("Error fetching user info:", error);

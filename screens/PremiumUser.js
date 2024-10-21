@@ -27,7 +27,7 @@ const PremiumUser = ({ route }) => {
   useEffect(() => {
     const fetchVisitorDetails = async () => {
       try {
-        const response = await axios.get(`http://192.168.1.9:8005/api/v1/visitor/details/${visitorId}`);
+        const response = await axios.get(`https://kgv-backend.onrender.com/api/v1/visitor/details/${visitorId}`);
         if (response.data.success) {
           const visitorData = response.data.data[0];
           setFormData((prevData) => ({
@@ -54,99 +54,99 @@ const PremiumUser = ({ route }) => {
     fetchVisitorDetails();
   }, [visitorId]);
 
-  // const checkoutHandler = async () => {
-  //   try {
-  //     const { fullName, phoneNumber, address, email, amount } = formData;
+  const checkoutHandler = async () => {
+    try {
+      const { fullName, phoneNumber, address, email, amount } = formData;
 
-  //     if (!fullName || !phoneNumber || !address || !email || isNaN(amount) || Number(amount) <= 0) {
-  //       Alert.alert('Validation Error', 'Please fill all required fields with valid data.');
-  //       return;
-  //     }
+      if (!fullName || !phoneNumber || !address || !email || isNaN(amount) || Number(amount) <= 0) {
+        Alert.alert('Validation Error', 'Please fill all required fields with valid data.');
+        return;
+      }
 
-  //     const amountInPaise = Math.round(Number(amount) * 100);
+      const amountInPaise = Math.round(Number(amount) * 100);
 
-  //     const { data: { key } } = await axios.get("http://192.168.1.9:8005/api/getkey");
-  //     const { data: { order } } = await axios.post("http://192.168.1.9:8005/api/v1/kgvmitra/kgvcheckout", { amount: amountInPaise });
+      const { data: { key } } = await axios.get("https://kgv-backend.onrender.com/api/getkey");
+      const { data: { order } } = await axios.post("https://kgv-backend.onrender.com/api/v1/kgvmitra/kgvcheckout", { amount: amountInPaise });
 
-  //     const options = {
-  //       key,
-  //       amount: order.amount,
-  //       currency: "INR",
-  //       name: "Payment to KGV",
-  //       description: "Payment for KGV services",
-  //       image: "https://raw.githubusercontent.com/jagdish97897/kgvl/main/logokgv.cb6e50d56b55ae361cd7-removebg-preview.png",
-  //       order_id: order.id,
-  //       prefill: {
-  //         name: formData.fullName,
-  //         email: formData.email,
-  //         contact: formData.phoneNumber,
-  //       },
-  //       notes: {
-  //         fullName: formData.fullName,
-  //         phoneNumber: formData.phoneNumber,
-  //         address: formData.address,
-  //         aadhar: formData.aadhar,
-  //         dlno: formData.dlno,
-  //         dob: formData.dob,
-  //         gender: formData.gender,
-  //         email: formData.email,
-  //         amount: formData.amount,
-  //         pan: formData.pan,
-  //       },
-  //       theme: {
-  //         color: "#121212",
-  //       },
-  //     };
+      const options = {
+        key,
+        amount: order.amount,
+        currency: "INR",
+        name: "Payment to KGV",
+        description: "Payment for KGV services",
+        image: "https://raw.githubusercontent.com/jagdish97897/kgvl/main/logokgv.cb6e50d56b55ae361cd7-removebg-preview.png",
+        order_id: order.id,
+        prefill: {
+          name: formData.fullName,
+          email: formData.email,
+          contact: formData.phoneNumber,
+        },
+        notes: {
+          fullName: formData.fullName,
+          phoneNumber: formData.phoneNumber,
+          address: formData.address,
+          aadhar: formData.aadhar,
+          dlno: formData.dlno,
+          dob: formData.dob,
+          gender: formData.gender,
+          email: formData.email,
+          amount: formData.amount,
+          pan: formData.pan,
+        },
+        theme: {
+          color: "#121212",
+        },
+      };
 
-  //     RazorpayCheckout.open(options).then(async (data) => {
-  //       // Resetting the navigation stack to prevent going back
-  //       console.log(data.razorpay_payment_id)
-  //       console.log(data.razorpay_order_id)
-  //       console.log(data.razorpay_signature)
+      RazorpayCheckout.open(options).then(async (data) => {
+        // Resetting the navigation stack to prevent going back
+        console.log(data.razorpay_payment_id)
+        console.log(data.razorpay_order_id)
+        console.log(data.razorpay_signature)
 
-  //       const verificationResponse = await axios.post("http://192.168.1.9:8005/api/v1/payment/premium/payment-verification", {
-  //         ...data
-  //       });
+        const verificationResponse = await axios.post("https://kgv-backend.onrender.com/api/v1/payment/premium/payment-verification", {
+          ...data
+        });
 
-  //       if (verificationResponse.data.success) {
-  //         navigation.navigate('PremiumPayment', { paymentId: data.razorpay_payment_id, formData })
-  //         // Navigate to the success screen
-  //         //  navigation.dispatch(
-  //         //   CommonActions.reset({
-  //         //     index: 0,
-  //         //     routes: [{ name: 'MainNavigator1', params: { screen: 'Welcome1', params: { visitorId } } }],
-  //         //   })
-  //         // );
+        if (verificationResponse.data.success) {
+          navigation.navigate('PremiumPayment', { paymentId: data.razorpay_payment_id, formData })
+          // Navigate to the success screen
+          //  navigation.dispatch(
+          //   CommonActions.reset({
+          //     index: 0,
+          //     routes: [{ name: 'MainNavigator1', params: { screen: 'Welcome1', params: { visitorId } } }],
+          //   })
+          // );
 
-  //       } else {
-  //         // Handle failure (if any)
-  //         Alert.alert('Payment Verification Failed', 'Please contact support.');
-  //       }
-  //     }).catch((error) => {
-  //       console.error("Razorpay Error:", error);
-  //       Alert.alert(`Error: ${error.code} | ${error.description}`);
-  //     });
+        } else {
+          // Handle failure (if any)
+          Alert.alert('Payment Verification Failed', 'Please contact support.');
+        }
+      }).catch((error) => {
+        console.error("Razorpay Error:", error);
+        Alert.alert(`Error: ${error.code} | ${error.description}`);
+      });
 
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //     Alert.alert('Error', 'Something went wrong. Please try again.');
-  //   }
-  // };
+    } catch (error) {
+      console.error("Error:", error);
+      Alert.alert('Error', 'Something went wrong. Please try again.');
+    }
+  };
 
   const amount = 299;
 
-  const checkoutHandler = () => {
-    if (formData && visitorId && amount) {
-      navigation.navigate('PrimumpaymentImageUpload', {
-        formData,
-        visitorId,
-        amount
-      });
-    } else {
-      // Handle case where required data is missing
-      console.log('Missing required data for navigation.');
-    }
-  };
+  // const checkoutHandler = () => {
+  //   if (formData && visitorId && amount) {
+  //     navigation.navigate('PrimumpaymentImageUpload', {
+  //       formData,
+  //       visitorId,
+  //       amount
+  //     });
+  //   } else {
+  //     // Handle case where required data is missing
+  //     console.log('Missing required data for navigation.');
+  //   }
+  // };
 
   return (
     <LinearGradient colors={['#06264D', '#FFF']} style={styles.gradient}>

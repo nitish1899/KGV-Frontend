@@ -17,7 +17,7 @@ const SpinFeature = ({ navigation, route }) => {
     setIsSpinCompleted(true)
     alert(`You won ${value}!`);
     const updateUserReward = async () => {
-      const user1 = await axios.patch(`http://192.168.1.9:8005/api/v1/visitor/spinTheWheel/${userId}`, { reward: value });
+      const user1 = await axios.patch(`https://kgv-backend.onrender.com/api/v1/visitor/spinTheWheel/${userId}`, { reward: value });
       setUser(user1.data);
 
     };

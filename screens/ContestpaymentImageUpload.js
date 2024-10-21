@@ -55,7 +55,7 @@ const ContestpaymentImageUpload = ({ route }) => {
         console.log('formadata', formData)
 
         try {
-            const response = await axios.post('http://192.168.1.9:8005/api/contestupload', formData, {
+            const response = await axios.post('https://kgv-backend.onrender.com/api/contestupload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -68,7 +68,8 @@ const ContestpaymentImageUpload = ({ route }) => {
 
             navigation.navigate("KitBookingPaymentSuccess", {
                 paymentProofId: response.data.data._id,
-                userId
+                userId,
+                contestParticipation: true
             });
 
         } catch (error) {
@@ -87,7 +88,7 @@ const ContestpaymentImageUpload = ({ route }) => {
 
                 <ScrollView>
                     <View style={styles.imageContainer}>
-                        <Text style={styles.text}> pay using the following details:</Text>
+                        <Text style={styles.text}> Pay using the following details and submit the reciept below:</Text>
                         <Text style={styles.text}>Scan the QR code to make a payment:</Text>
                         <Image
                             source={require("../assets/images/scanner.png")}
@@ -100,11 +101,10 @@ const ContestpaymentImageUpload = ({ route }) => {
                         </View>
                         <Text style={styles.text}>Bank Transfer Details:</Text>
                         <View style={styles.card}>
-                            <Text style={styles.text1}>Bank Account No : 872347578662</Text>
-                            <Text style={styles.text1}>IFSC Code : BABR0AIRPOR</Text>
-
+                            <Text style={styles.text1}>Bank Account No : 00000042073223703</Text>
+                            <Text style={styles.text1}>IFSC Code : SBIN0004381</Text>
                         </View>
-                        <Text style={styles.text2}>Your payable amount is {amount} for booking:</Text>
+                        <Text style={styles.text2}>Your payable amount is ₹{amount} for participating in contest:</Text>
                     </View>
                     <View style={styles.container}>
 
@@ -131,152 +131,168 @@ const ContestpaymentImageUpload = ({ route }) => {
     );
 };
 
-// const styles = StyleSheet.create({
-//     gradientBackground: {
-//         flex: 1,
-//     },
-//     input: {
-//         borderWidth: 1,
-//         marginBottom: 10,
-//         padding: 10,
-//     },
-//     imageContainer: {
-//         flexDirection: 'column', // Stack images vertically
-//         alignItems: 'center', // Center images horizontally
-//         marginTop: 20,
-//     },
-//     image: {
-//         width: 200,
-//         height: 200,
-//         margin: 5,
-//     },
-//     text: {
-//         fontSize: 16,
-//         marginBottom: 10, // Space between text elements
-//         marginTop: 10, // Space between text elements
-//         color: '#FFF',
-//     },
-//     text2: {
-//         fontSize: 16,
-//         marginBottom: 10, // Space between text elements
-//         marginTop: 10, // Space between text elements
-//         color: '#FFF',
-//         fontWeight: 'bold',
-//     },
-//     headingContainer: {
-//         alignItems: 'center',
-//         marginVertical: 20, // 1% of screen height
-//     },
-//     headingText: {
-//         fontSize: 34, // Scales with screen width
-//         fontWeight: 'bold',
-//         color: '#FFF',
-//     },
-//     card: {
-//         backgroundColor: 'rgba(255, 255, 255, 0.5)', // White with 50% opacity
-//         padding: 20,
-//         borderRadius: 10,
-//         shadowColor: '#000', // Optional shadow for elevation
-//         shadowOffset: {
-//             width: 0,
-//             height: 2,
-//         },
-//         shadowOpacity: 0.2,
-//         shadowRadius: 3.84,
-//         elevation: 5, // For Android
-//         margin: 10,
-//     },
-//     container: {
-//         flexDirection: 'row',
-//         justifyContent: 'space-around',
-//         margin: 20,
-//     },
-//     button: {
-//         backgroundColor: '#6200EE', // Purple color
-//         padding: 15,
-//         borderRadius: 5,
-//         elevation: 3, // For shadow on Android
-//     },
-//     buttonText: {
-//         color: '#FFFFFF', // White text color
-//         fontSize: 16,
-//         textAlign: 'center',
-//     },
-
-// });
 
 const styles = StyleSheet.create({
     gradientBackground: {
         flex: 1,
     },
-    input: {
-        borderWidth: scaleWidth(1),
-        marginBottom: scaleHeight(10),
-        padding: scaleHeight(10),
+    headingContainer: {
+        alignItems: 'center',
+        marginVertical: scaleHeight(20),
+    },
+    headingText: {
+        fontSize: scaleWidth(28),
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        textAlign: 'center',
+        textShadowColor: 'rgba(0, 0, 0, 0.25)', // Optional shadow for text
+        textShadowOffset: { width: 2, height: 2 },
+        textShadowRadius: 4,
     },
     imageContainer: {
-        flexDirection: 'column', // Stack images vertically
-        alignItems: 'center', // Center images horizontally
+        flexDirection: 'column',
+        alignItems: 'center',
         marginTop: scaleHeight(20),
+        marginBottom: scaleHeight(20),
     },
     image: {
-        width: scaleWidth(200),
-        height: scaleHeight(200),
-        margin: scaleWidth(5),
+        width: scaleWidth(180),
+        height: scaleHeight(180),
+        margin: scaleWidth(10),
+        borderRadius: scaleWidth(10),
+        borderColor: '#FFFFFF', // Border to make images stand out
+        borderWidth: 2,
     },
     text: {
         fontSize: scaleWidth(16),
-        marginBottom: scaleHeight(10), // Space between text elements
-        marginTop: scaleHeight(10), // Space between text elements
-        color: '#FFF',
+        marginBottom: scaleHeight(10),
+        marginTop: scaleHeight(10),
+        color: '#FFFFFF',
+        textAlign: 'center',
+        lineHeight: scaleHeight(24), // Improved readability with line-height
     },
     text2: {
-        fontSize: scaleWidth(16),
-        marginBottom: scaleHeight(10), // Space between text elements
-        marginTop: scaleHeight(10), // Space between text elements
-        color: '#FFF',
+        fontSize: scaleWidth(18),
+        marginBottom: scaleHeight(10),
+        marginTop: scaleHeight(10),
+        color: '#000', // Golden color for emphasis
         fontWeight: 'bold',
-    },
-    headingContainer: {
-        alignItems: 'center',
-        marginVertical: scaleHeight(20), // 1% of screen height
-    },
-    headingText: {
-        fontSize: scaleWidth(34), // Scales with screen width
-        fontWeight: 'bold',
-        color: '#FFF',
+        textAlign: 'center',
     },
     card: {
-        backgroundColor: 'rgba(255, 255, 255, 0.5)', // White with 50% opacity
+        backgroundColor: 'rgba(255, 255, 255, 0.2)', // Semi-transparent white
         padding: scaleHeight(20),
         borderRadius: scaleWidth(10),
-        shadowColor: '#000', // Optional shadow for elevation
-        shadowOffset: {
-            width: 0,
-            height: scaleHeight(2),
-        },
-        shadowOpacity: 0.2,
-        shadowRadius: scaleWidth(3.84),
-        elevation: 5, // For Android
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: scaleHeight(2) },
+        shadowOpacity: 0.3,
+        shadowRadius: scaleWidth(4),
+        elevation: 5,
         margin: scaleWidth(10),
+        width: '90%',
+        alignSelf: 'center',
     },
     container: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         margin: scaleWidth(20),
+        gap: 6
     },
     button: {
-        backgroundColor: '#6200EE', // Purple color
+        backgroundColor: '#1E90FF', // Bright blue for the button
         padding: scaleHeight(15),
-        borderRadius: scaleWidth(5),
-        elevation: 3, // For shadow on Android
+        borderRadius: scaleWidth(10),
+        elevation: 5, // Added shadow for button
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: scaleHeight(3) },
+        shadowOpacity: 0.4,
+        shadowRadius: scaleWidth(4),
+        minWidth: scaleWidth(120), // Consistent width for buttons
+        alignItems: 'center',
     },
     buttonText: {
-        color: '#FFFFFF', // White text color
+        color: '#FFFFFF',
         fontSize: scaleWidth(16),
+        fontWeight: 'bold',
         textAlign: 'center',
     },
 });
 
-
 export default ContestpaymentImageUpload;
+
+
+// const styles = StyleSheet.create({
+//     gradientBackground: {
+//         flex: 1,
+//     },
+//     input: {
+//         borderWidth: scaleWidth(1),
+//         marginBottom: scaleHeight(10),
+//         padding: scaleHeight(10),
+//     },
+//     imageContainer: {
+//         flexDirection: 'column', // Stack images vertically
+//         alignItems: 'center', // Center images horizontally
+//         marginTop: scaleHeight(20),
+//     },
+//     image: {
+//         width: scaleWidth(200),
+//         height: scaleHeight(200),
+//         margin: scaleWidth(5),
+//     },
+//     text: {
+//         fontSize: scaleWidth(16),
+//         marginBottom: scaleHeight(10), // Space between text elements
+//         marginTop: scaleHeight(10), // Space between text elements
+//         color: '#FFF',
+//     },
+//     text2: {
+//         fontSize: scaleWidth(16),
+//         marginBottom: scaleHeight(10), // Space between text elements
+//         marginTop: scaleHeight(10), // Space between text elements
+//         color: '#FFF',
+//         fontWeight: 'bold',
+//     },
+//     headingContainer: {
+//         alignItems: 'center',
+//         marginVertical: scaleHeight(20), // 1% of screen height
+//     },
+//     headingText: {
+//         fontSize: scaleWidth(28), // Scales with screen width
+//         fontWeight: 'bold',
+//         color: '#FFF',
+//     },
+//     card: {
+//         backgroundColor: 'rgba(255, 255, 255, 0.5)', // White with 50% opacity
+//         padding: scaleHeight(20),
+//         borderRadius: scaleWidth(10),
+//         shadowColor: '#000', // Optional shadow for elevation
+//         shadowOffset: {
+//             width: 0,
+//             height: scaleHeight(2),
+//         },
+//         shadowOpacity: 0.2,
+//         shadowRadius: scaleWidth(3.84),
+//         elevation: 5, // For Android
+//         margin: scaleWidth(10),
+//     },
+//     container: {
+//         flexDirection: 'row',
+//         justifyContent: 'space-around',
+//         margin: scaleWidth(20),
+//     },
+//     button: {
+//         backgroundColor: '#6200EE', // Purple color
+//         padding: scaleHeight(15),
+//         borderRadius: scaleWidth(5),
+//         elevation: 3, // For shadow on Android
+//     },
+//     buttonText: {
+//         color: '#FFFFFF', // White text color
+//         fontSize: scaleWidth(16),
+//         textAlign: 'center',
+//     },
+// });
+
+
+// export default ContestpaymentImageUpload;

@@ -74,7 +74,7 @@ const MultipleImageUpload = () => {
         });
 
         try {
-            const response = await axios.post('http://192.168.1.9:8005/api/files/upload', formData, {
+            const response = await axios.post('https://kgv-backend.onrender.com/api/files/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -520,7 +520,7 @@ export default MultipleImageUpload;
 //         });
 
 //         try {
-//             const response = await axios.post('http://192.168.1.9:8005/api/files/upload', formData, {
+//             const response = await axios.post('https://kgv-backend.onrender.com/api/files/upload', formData, {
 //                 headers: {
 //                     'Content-Type': 'multipart/form-data',
 //                 },
