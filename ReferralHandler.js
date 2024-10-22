@@ -11,7 +11,7 @@ export default function ReferralHandler() {
     // Subscribe to Branch deep links
     const unsubscribe = Branch.subscribe(({ error, params }) => {
       if (error) {
-        console.error('Branch deep link error:', error);
+        console.log('Branch deep link error:', error);
         return;
       }
 

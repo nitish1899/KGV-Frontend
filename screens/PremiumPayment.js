@@ -32,7 +32,7 @@ const PremiumPayment = ({ route }) => {
                 // console.log('response.data.data[0].spinTheWheel', response.data.data[0].spinTheWheel)
                 setSpinTheWheel(response.data.data[0].spinTheWheel);
             } catch (error) {
-                console.error("Error fetching user info:", error);
+                console.log("Error fetching user info:", error);
             }
         };
 

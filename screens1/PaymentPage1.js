@@ -174,7 +174,7 @@ const PaymentPage1 = ({ route, navigation }) => {
         })
         .catch((error) => {
           console.log("Razorpay Error:", error);
-          Alert.alert(`Error: ${error.code} | ${error.description}`);
+          // Alert.alert(`Error: ${error.code} | ${error.description}`);
         });
     } catch (error) {
       console.log("Error:", error);

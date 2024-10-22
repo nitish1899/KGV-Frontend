@@ -2,7 +2,7 @@
   "expo": {
     "name": "KGVHybridSol",
     "slug": "KGVHybridSol",
-    "version": "2.4.0",
+    "version": "2.4.1",
     "orientation": "portrait",
     "icon": "./assets/images/kgv.png",
     "userInterfaceStyle": "light",
@@ -26,7 +26,7 @@
         "foregroundImage": "./assets/images/kgv.png",
         "backgroundColor": "#ffffff"
       },
-      "versionCode": 19,
+      "versionCode": 20,
       "package": "com.tsilteam.KGVHybridSol"
     },
     "web": {

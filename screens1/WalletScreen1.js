@@ -21,7 +21,7 @@ const WalletScreen1 = ({ route, navigation }) => {
     if (userId) {
       checkAndCreateWallet();
     } else {
-      console.error('User ID is undefined');
+      console.log('User ID is undefined');
     }
   }, [userId]);
 
@@ -38,7 +38,7 @@ const WalletScreen1 = ({ route, navigation }) => {
       if (error.response?.status === 404) {
         await createWallet();
       } else {
-        console.error('Error checking wallet:', error);
+        console.log('Error checking wallet:', error);
         Alert.alert('Error', 'Failed to check wallet status.');
       }
     }
@@ -51,7 +51,7 @@ const WalletScreen1 = ({ route, navigation }) => {
       fetchWalletBalance();
       fetchTransactions();
     } catch (error) {
-      console.error('Error creating wallet:', error);
+      console.log('Error creating wallet:', error);
       Alert.alert('Error', 'Failed to create wallet.');
     }
   };
@@ -62,7 +62,7 @@ const WalletScreen1 = ({ route, navigation }) => {
       const response = await axios.get(walletApiUrl);
       setBalance(response.data.balance);
     } catch (error) {
-      console.error('Error fetching balance:', error);
+      console.log('Error fetching balance:', error);
     }
   };
 
@@ -76,7 +76,7 @@ const WalletScreen1 = ({ route, navigation }) => {
         .reduce((sum, item) => sum + item.amount, 0);
       setTotalPoints(points);
     } catch (error) {
-      console.error('Error fetching transactions:', error);
+      console.log('Error fetching transactions:', error);
     }
   };
 
@@ -98,7 +98,7 @@ const WalletScreen1 = ({ route, navigation }) => {
       setAmount('');
       refreshData(); // Refresh data after recharge
     } catch (error) {
-      console.error('Error during recharge:', error);
+      console.log('Error during recharge:', error);
       Alert.alert('Error', 'Failed to recharge');
     } finally {
       setLoading(false);
@@ -121,7 +121,7 @@ const WalletScreen1 = ({ route, navigation }) => {
       Alert.alert('Payment Success', `Paid ₹${paymentAmount} from Wallet`);
       refreshData(); // Refresh data after payment
     } catch (error) {
-      console.error('Error during payment:', error);
+      console.log('Error during payment:', error);
       Alert.alert('Error', 'Payment failed');
     } finally {
       setLoading(false);

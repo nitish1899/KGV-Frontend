@@ -73,7 +73,7 @@ const ContestpaymentImageUpload = ({ route }) => {
             });
 
         } catch (error) {
-            console.error('Upload error:', error.response ? error.response.data : error.message);
+            console.log('Upload error:', error.response ? error.response.data : error.message);
             Alert.alert('Error', error.response?.data?.message || 'An error occurred during the upload');
         }
     };

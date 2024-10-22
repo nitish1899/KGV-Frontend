@@ -72,7 +72,7 @@ const PaymentImageUpload1 = ({ route }) => {
         contestParticipation: false
       });
     } catch (error) {
-      console.error('Upload error:', error.response ? error.response.data : error.message);
+      console.log('Upload error:', error.response ? error.response.data : error.message);
       Alert.alert('Error', error.response?.data?.message || 'An error occurred during the upload');
     }
   };
@@ -281,7 +281,7 @@ export default PaymentImageUpload1;
 //         contestParticipation: false
 //       });
 //     } catch (error) {
-//       console.error('Upload error:', error.response ? error.response.data : error.message);
+//       console.log('Upload error:', error.response ? error.response.data : error.message);
 //       Alert.alert('Error', error.response?.data?.message || 'An error occurred during the upload');
 //     }
 //   };

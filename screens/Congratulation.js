@@ -84,12 +84,12 @@ const Congratulation = ({ route }) => {
                     }
                 })
                 .catch((error) => {
-                    console.log("Razorpay Error:", error);
-                    Alert.alert(`Error: ${error.code} | ${error.description}`);
+                    console.log("Razorpay Payment Error:", error);
+                    // Alert.alert(`Error: ${error.code} | ${error.description}`);
                 });
         } catch (error) {
-            console.log("Error:", error);
-            Alert.alert('Error', 'Something went wrong. Please try again.');
+            console.log("Error:", error.message);
+            Alert.alert('Error', error.message);
         }
     };
 

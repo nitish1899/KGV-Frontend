@@ -89,7 +89,7 @@ const MultipleImageUpload = () => {
             // Check if error has a response (server-side error)
             if (error.response) {
                 // Log full error details (useful for debugging)
-                // console.error('Error response:', error.response.data);
+                // console.log('Error response:', error.response.data);
 
                 // Provide a user-friendly error message based on status code
                 if (error.response.status === 400) {
@@ -101,11 +101,11 @@ const MultipleImageUpload = () => {
                 }
             } else if (error.request) {
                 // Request made but no response (network error or server issue)
-                // console.error('Error request:', error.request);
+                // console.log('Error request:', error.request);
                 Alert.alert('Error', 'Unable to connect to the server. Please check your network.');
             } else {
                 // Something else triggered the error
-                // console.error('Error', error.message);
+                // console.log('Error', error.message);
                 Alert.alert('Error', error.message);
             }
 
@@ -535,7 +535,7 @@ export default MultipleImageUpload;
 //             // Check if error has a response (server-side error)
 //             if (error.response) {
 //                 // Log full error details (useful for debugging)
-//                 // console.error('Error response:', error.response.data);
+//                 // console.log('Error response:', error.response.data);
 
 //                 // Provide a user-friendly error message based on status code
 //                 if (error.response.status === 400) {
@@ -547,11 +547,11 @@ export default MultipleImageUpload;
 //                 }
 //             } else if (error.request) {
 //                 // Request made but no response (network error or server issue)
-//                 // console.error('Error request:', error.request);
+//                 // console.log('Error request:', error.request);
 //                 Alert.alert('Error', 'Unable to connect to the server. Please check your network.');
 //             } else {
 //                 // Something else triggered the error
-//                 // console.error('Error', error.message);
+//                 // console.log('Error', error.message);
 //                 Alert.alert('Error', error.message);
 //             }
 

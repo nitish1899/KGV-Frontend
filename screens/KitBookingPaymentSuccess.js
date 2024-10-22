@@ -19,7 +19,7 @@ const KitBookingPaymentSuccess = ({ route }) => {
                 const userData = await axios.get(`https://kgv-backend.onrender.com/api/v1/visitor/details/${userId}`);
                 setUser(userData);
             } catch (error) {
-                console.error('Failed to fetch user:', error);
+                console.log('Failed to fetch user:', error);
             } finally {
                 setLoading(false);
             }

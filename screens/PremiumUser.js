@@ -46,7 +46,7 @@ const PremiumUser = ({ route }) => {
           Alert.alert('Error', 'Failed to fetch visitor details.');
         }
       } catch (error) {
-        console.error('Error fetching visitor details:', error);
+        console.log('Error fetching visitor details:', error);
         Alert.alert('Error', 'Failed to fetch visitor details.');
       }
     };
@@ -98,37 +98,38 @@ const PremiumUser = ({ route }) => {
         },
       };
 
-      RazorpayCheckout.open(options).then(async (data) => {
-        // Resetting the navigation stack to prevent going back
-        console.log(data.razorpay_payment_id)
-        console.log(data.razorpay_order_id)
-        console.log(data.razorpay_signature)
+      RazorpayCheckout.open(options)
+        .then(async (data) => {
+          // Resetting the navigation stack to prevent going back
+          console.log(data.razorpay_payment_id)
+          console.log(data.razorpay_order_id)
+          console.log(data.razorpay_signature)
 
-        const verificationResponse = await axios.post("https://kgv-backend.onrender.com/api/v1/payment/premium/payment-verification", {
-          ...data
+          const verificationResponse = await axios.post("https://kgv-backend.onrender.com/api/v1/payment/premium/payment-verification", {
+            ...data
+          });
+
+          if (verificationResponse.data.success) {
+            navigation.navigate('PremiumPayment', { paymentId: data.razorpay_payment_id, formData })
+            // Navigate to the success screen
+            //  navigation.dispatch(
+            //   CommonActions.reset({
+            //     index: 0,
+            //     routes: [{ name: 'MainNavigator1', params: { screen: 'Welcome1', params: { visitorId } } }],
+            //   })
+            // );
+
+          } else {
+            // Handle failure (if any)
+            Alert.alert('Payment Verification Failed', 'Please contact support.');
+          }
+        }).catch((error) => {
+          console.log("Razorpay Error:", error);
+          // Alert.alert(`Error: ${error.code} | ${error.description}`);
         });
 
-        if (verificationResponse.data.success) {
-          navigation.navigate('PremiumPayment', { paymentId: data.razorpay_payment_id, formData })
-          // Navigate to the success screen
-          //  navigation.dispatch(
-          //   CommonActions.reset({
-          //     index: 0,
-          //     routes: [{ name: 'MainNavigator1', params: { screen: 'Welcome1', params: { visitorId } } }],
-          //   })
-          // );
-
-        } else {
-          // Handle failure (if any)
-          Alert.alert('Payment Verification Failed', 'Please contact support.');
-        }
-      }).catch((error) => {
-        console.error("Razorpay Error:", error);
-        Alert.alert(`Error: ${error.code} | ${error.description}`);
-      });
-
     } catch (error) {
-      console.error("Error:", error);
+      console.log("Error:", error);
       Alert.alert('Error', 'Something went wrong. Please try again.');
     }
   };
