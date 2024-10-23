@@ -145,10 +145,10 @@ export default function BikeDetails({ navigation, route }) {
                 <View style={styles.overlayTextContainer} >
                     <LetterByLetterText
                         texts1={[
-                            `Wow! Congratulations ${user.data.fullName} Now you can save ${savings} with KGV Mitr`
+                            `Wow! Congratulations, ${user.data.fullName}! Now you can save ${savings} with KGV Mitra`
                         ]}
                         texts2={[
-                            `You also become environment saviour Estimated CO2 emissions over 3 years: ${carbonEmissions} kg`
+                            `You've also become an environment saviour! Estimated CO2 emissions over 3 years: ${carbonEmissions} kg`
                         ]}
                         style={styles.overlayText}
                         carbonEmissions={carbonEmissions}
@@ -172,7 +172,7 @@ export default function BikeDetails({ navigation, route }) {
                             onPress={() => setDetailsVisible(!detailsVisible)}
                             style={styles.clickableTextContainer}
                         >
-                            <Text style={styles.subTitle}>Estimation taken for 3 years {detailsVisible ? '  ▲' : '  ▼'} </Text>
+                            <Text style={styles.subTitle}>Estimation taken for 3 years {detailsVisible ? '˄' : '˅'} </Text>
                         </TouchableOpacity>
 
                         {detailsVisible && bikeDetails && (
@@ -303,14 +303,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     clickableTextContainer: {
-        marginVertical: height * 0.005, // Responsive vertical margin
+        marginBottom: height * 0.05,
+        height: height * 0.06, // Responsive vertical margin
+        // backgroundColor: 'red',
+        marginTop: height * 0.6
     },
     subTitle: {
         fontSize: width * 0.045, // Responsive font size
         fontWeight: 'bold',
         color: 'yellow',
-        marginBottom: height * 0.02, // Responsive margin
-        marginTop: height * 0.5, // Responsive margin from top
+        // marginBottom: height * 0.04, // Responsive margin
+        marginTop: height * 0.014, // Responsive margin from top
     },
     vehicledetails: {
         fontSize: width * 0.06,

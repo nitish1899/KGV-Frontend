@@ -10,7 +10,7 @@ import { shareAsync } from 'expo-sharing';
 const { width, height } = Dimensions.get('window');
 
 const PaymentPage1 = ({ route, navigation }) => {
-  const { formData, user, amount, visitorId, cartId, totalPrice } = route.params;
+  const { formData, user, amount, visitorId, cartId, totalPrice, vehiclenos } = route.params;
 
   const [data, setData] = useState(null);
   const [buyerDetails, setBuyerDetails] = useState(null);
@@ -114,18 +114,7 @@ const PaymentPage1 = ({ route, navigation }) => {
           email: formData.email,
           contact: formData.phoneNumber,
         },
-        notes: {
-          fullName: formData.fullName,
-          phoneNumber: formData.phoneNumber,
-          address: formData.address,
-          aadhar: formData.aadhar,
-          dlno: formData.dlno,
-          dob: formData.dob,
-          gender: formData.gender,
-          email: formData.email,
-          amount: formData.amount,
-          pan: formData.pan,
-        },
+        notes: {},
         theme: {
           color: "#121212",
         },
@@ -157,7 +146,21 @@ const PaymentPage1 = ({ route, navigation }) => {
               data,
               orderId: orderResponse.data.order._id,
               user,
-              referralCode: buyerDetails.referralCode
+              referralCode: buyerDetails.referralCode,
+              notes: {
+                fullName: formData.fullName,
+                phoneNumber: formData.phoneNumber,
+                address: formData.address,
+                aadhar: formData.aadhar,
+                dlno: formData.dlno,
+                dob: formData.dob,
+                gender: formData.gender,
+                email: formData.email,
+                amount: formData.amount,
+                pan: formData.pan,
+                vehiclenos
+              },
+              vehiclenos,
             });
 
           } catch (orderError) {

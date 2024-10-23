@@ -9,12 +9,12 @@ import CustomModal1 from './CustomModel1.js';
 const { width, height } = Dimensions.get('window');
 
 export default function BookingKit1({ navigation, route }) {
-    const { visitorId, totalItems, user, cartId, totalPrice } = route.params;
+    const { visitorId, totalItems, user, cartId, totalPrice, vehiclenos } = route.params;
     const [keyboardVisible, setKeyboardVisible] = useState(false);
     const [selectedOption, setSelectedOption] = useState('');
-    console.log(totalPrice)
+    // console.log(totalPrice)
     const [modalVisible, setModalVisible] = useState(false);
-    console.log(cartId)
+    // console.log(cartId)
 
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
@@ -33,9 +33,9 @@ export default function BookingKit1({ navigation, route }) {
     // Adjust this useEffect to handle navigation correctly
     useEffect(() => {
         if (selectedOption === 'Other') {
-            navigation.navigate('CheckoutButton1', { selectedOption, visitorId, totalItems, user });
+            navigation.navigate('CheckoutButton1', { selectedOption, visitorId, totalItems, user, vehiclenos });
         } else if (selectedOption === 'Self') {
-            navigation.navigate('BookingCheckout1', { selectedOption, visitorId, totalItems, user, cartId, totalPrice });
+            navigation.navigate('BookingCheckout1', { selectedOption, visitorId, totalItems, user, cartId, totalPrice, vehiclenos });
         }
     }, [selectedOption, navigation, visitorId]);
 

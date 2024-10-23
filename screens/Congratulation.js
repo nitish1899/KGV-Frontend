@@ -51,14 +51,7 @@ const Congratulation = ({ route }) => {
                     email: formData.email,
                     contact: formData.phone,
                 },
-                notes: {
-                    name: formData.name,
-                    phone: formData.phone,
-                    adhaarno: formData.adhaarno,
-                    dailyrunning: formData.dailyrunning,
-                    vehicleno: formData.vehicleno,
-                    email: formData.email,
-                },
+                notes: {},
                 theme: {
                     color: "#121212",
                 },
@@ -69,7 +62,16 @@ const Congratulation = ({ route }) => {
                     console.log(`Payment Successful: ${data.razorpay_payment_id}`);
 
                     const verificationResponse = await axios.post("https://kgv-backend.onrender.com/api/v1/payment/contest/payment-verification", {
-                        ...data
+                        ...data,
+                        notes: {
+                            name: formData.name,
+                            phone: formData.phone,
+                            adhaarno: formData.adhaarno,
+                            dailyrunning: formData.dailyrunning,
+                            vehicleno: formData.vehicleno,
+                            email: formData.email,
+                            amount: order.amount,
+                        },
                     });
 
                     if (verificationResponse.data.success) {

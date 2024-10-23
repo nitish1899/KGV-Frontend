@@ -10,7 +10,7 @@ import { shareAsync } from 'expo-sharing';
 const { width, height } = Dimensions.get('window');
 
 const PaymentPage = ({ route, navigation }) => {
-  const { formData, user, amount, visitorId, cartId, totalPrice } = route.params;
+  const { formData, user, amount, visitorId, cartId, totalPrice, vehiclenos } = route.params;
 
 
   console.log(formData, user, amount, visitorId, cartId, totalPrice)
@@ -114,18 +114,7 @@ const PaymentPage = ({ route, navigation }) => {
           email: formData.email,
           contact: formData.phoneNumber,
         },
-        notes: {
-          fullName: formData.fullName,
-          phoneNumber: formData.phoneNumber,
-          address: formData.address,
-          aadhar: formData.aadhar,
-          dlno: formData.dlno,
-          dob: formData.dob,
-          gender: formData.gender,
-          email: formData.email,
-          amount: formData.amount,
-          pan: formData.pan,
-        },
+        notes: {},
         theme: {
           color: "#121212",
         },
@@ -149,7 +138,9 @@ const PaymentPage = ({ route, navigation }) => {
               data,
               orderId: orderResponse.data.order._id,
               user,
-              referralCode: buyerDetails.referralCode
+              referralCode: buyerDetails.referralCode,
+              formData,
+              vehiclenos
             });
           } catch (orderError) {
             // Log the error response for more details

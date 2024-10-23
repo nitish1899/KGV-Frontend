@@ -13,7 +13,7 @@ const scaleWidth = width / 375;
 const scaleHeight = height / 812; // Assuming a base screen height of 812
 
 const BookingCheckout1 = ({ route }) => {
-  const { selectedOption, visitorId, totalItems, user, cartId, totalPrice } = route.params;
+  const { selectedOption, visitorId, totalItems, user, cartId, totalPrice, vehiclenos } = route.params;
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -91,7 +91,8 @@ const BookingCheckout1 = ({ route }) => {
         amount: formData.amount,
         visitorId,
         cartId,
-        totalPrice
+        totalPrice,
+        vehiclenos
       });
 
     } catch (error) {

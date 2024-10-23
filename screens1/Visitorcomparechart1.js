@@ -109,7 +109,7 @@ export default function BikeDetails({ navigation, route }) {
     useEffect(() => {
         const fetchBikeDetails = async () => {
             try {
-                const response = await fetch(`https://kgv-backend.onrender.com/api/v1/visitorbikedetails/visitorbikedetails/${vehicleno}`);
+                const response = await fetch(`http://192.168.1.5:8005/api/v1/visitorbikedetails/visitorbikedetails/${vehicleno}`);
                 const result = await response.json();
 
                 if (response.ok) {
@@ -147,10 +147,10 @@ export default function BikeDetails({ navigation, route }) {
                 <View style={styles.overlayTextContainer} >
                     <LetterByLetterText
                         texts1={[
-                            `Wow! Congratulations ${user.data.fullName}. Now you can save ${savings} with KGV Mitra`
+                            `Wow! Congratulations, ${user.data.fullName}! Now you can save ${savings} with KGV Mitra`
                         ]}
                         texts2={[
-                            `You also become environment saviour. Estimated CO2 emissions over 3 years: ${carbonEmissions} kg`
+                            `You've also become an environment saviour! Estimated CO2 emissions over 3 years: ${carbonEmissions} kg`
                         ]}
                         style={styles.overlayText}
                         carbonEmissions={carbonEmissions}
@@ -175,9 +175,7 @@ export default function BikeDetails({ navigation, route }) {
                             style={styles.clickableTextContainer}
                         >
                             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                <Text style={styles.subTitle}>Estimation taken for 3 years {
-                                    detailsVisible ? <Text style={{ fontSize: 20, marginTop: 30 }}>˄</Text> : <Text style={{ fontSize: 20, marginTop: 30 }}>˅</Text>}
-                                </Text>
+                                <Text style={styles.subTitle}>Estimation taken for 3 years {detailsVisible ? '˄' : '˅'}</Text>
                             </View>
 
                         </TouchableOpacity>
@@ -311,7 +309,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     clickableTextContainer: {
-        marginVertical: height * 0.005, // Responsive vertical margin
+        marginBottom: height * 0.05,
+        height: height * 0.06, // Responsive vertical margin
+        // backgroundColor: 'red',
+        marginTop: height * 0.6
     },
     subTitle: {
         fontSize: width * 0.045, // Responsive font size

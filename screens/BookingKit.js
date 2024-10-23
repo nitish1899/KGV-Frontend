@@ -9,7 +9,7 @@ import CustomModal from './CustomModal';
 const { width, height } = Dimensions.get('window');
 
 export default function BookingKit({ navigation, route }) {
-    const { visitorId, totalItems, user, cartId, totalPrice } = route.params;
+    const { visitorId, totalItems, user, cartId, totalPrice, vehiclenos } = route.params;
     const [keyboardVisible, setKeyboardVisible] = useState(false);
     const [selectedOption, setSelectedOption] = useState('');
     console.log(totalPrice)
@@ -33,9 +33,9 @@ export default function BookingKit({ navigation, route }) {
     // Adjust this useEffect to handle navigation correctly
     useEffect(() => {
         if (selectedOption === 'Other') {
-            navigation.navigate('CheckoutButton', { selectedOption, visitorId, totalItems, user });
+            navigation.navigate('CheckoutButton', { selectedOption, visitorId, totalItems, user, vehiclenos });
         } else if (selectedOption === 'Self') {
-            navigation.navigate('BookingCheckout', { selectedOption, visitorId, totalItems, user, cartId, totalPrice });
+            navigation.navigate('BookingCheckout', { selectedOption, visitorId, totalItems, user, cartId, totalPrice, vehiclenos });
         }
     }, [selectedOption, navigation, visitorId]);
 

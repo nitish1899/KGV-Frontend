@@ -8,7 +8,7 @@ import ProfileButton from './ProfileButton';
 const { width, height } = Dimensions.get('window');
 
 const Orderdetails = ({ route, navigation }) => {
-  const { data, orderId, user, referralCode } = route.params;
+  const { data, orderId, user, referralCode, formData, vehiclenos } = route.params;
   const [orderDetails, setOrderDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -42,7 +42,20 @@ const Orderdetails = ({ route, navigation }) => {
           razorpay_payment_id,
           razorpay_signature,
           userId: user.data.userId,
-          referralCode
+          referralCode,
+          notes: {
+            fullName: formData.fullName,
+            phoneNumber: formData.phoneNumber,
+            address: formData.address,
+            aadhar: formData.aadhar,
+            dlno: formData.dlno,
+            dob: formData.dob,
+            gender: formData.gender,
+            email: formData.email,
+            amount: formData.amount,
+            pan: formData.pan,
+            vehiclenos,
+          },
         });
         Alert.alert("Notification Sent", "Your payment verification notification has been sent successfully.");
       } catch (error) {

@@ -8,7 +8,7 @@ import CustomModal1 from './CustomModel1';
 const { width, height } = Dimensions.get('window');
 
 const Orderdetails1 = ({ route, navigation }) => {
-  const { data, orderId, user, referralCode } = route.params;
+  const { data, orderId, user, referralCode, notes } = route.params;
   console.log('Orderdetails1 user', user);
   const [orderDetails, setOrderDetails] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -43,7 +43,8 @@ const Orderdetails1 = ({ route, navigation }) => {
           razorpay_payment_id,
           razorpay_signature,
           userId: user.data.userId,
-          referralCode
+          referralCode,
+          notes
         });
         Alert.alert("Notification Sent", "Payment notification has been sent on your mail successfully.");
       } catch (error) {

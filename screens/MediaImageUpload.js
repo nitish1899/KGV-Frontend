@@ -178,7 +178,6 @@ const MultipleImageUpload = () => {
         Linking.openURL(url).catch((err) => console.log('Error opening URL', err));
     };
 
-
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
             setKeyboardVisible(true);
@@ -192,6 +191,7 @@ const MultipleImageUpload = () => {
             keyboardDidHideListener.remove();
         };
     }, []);
+
     return (
         <LinearGradient
             colors={['#06264D', '#FFF']}

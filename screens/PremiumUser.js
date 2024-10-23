@@ -81,18 +81,7 @@ const PremiumUser = ({ route }) => {
           email: formData.email,
           contact: formData.phoneNumber,
         },
-        notes: {
-          fullName: formData.fullName,
-          phoneNumber: formData.phoneNumber,
-          address: formData.address,
-          aadhar: formData.aadhar,
-          dlno: formData.dlno,
-          dob: formData.dob,
-          gender: formData.gender,
-          email: formData.email,
-          amount: formData.amount,
-          pan: formData.pan,
-        },
+        notes: {},
         theme: {
           color: "#121212",
         },
@@ -106,7 +95,19 @@ const PremiumUser = ({ route }) => {
           console.log(data.razorpay_signature)
 
           const verificationResponse = await axios.post("https://kgv-backend.onrender.com/api/v1/payment/premium/payment-verification", {
-            ...data
+            ...data,
+            notes: {
+              fullName: formData.fullName,
+              phoneNumber: formData.phoneNumber,
+              address: formData.address,
+              aadhar: formData.aadhar,
+              dlno: formData.dlno,
+              dob: formData.dob,
+              gender: formData.gender,
+              email: formData.email,
+              amount: order.amount,
+              pan: formData.pan,
+            },
           });
 
           if (verificationResponse.data.success) {
@@ -134,7 +135,7 @@ const PremiumUser = ({ route }) => {
     }
   };
 
-  const amount = 299;
+  // const amount = 299;
 
   // const checkoutHandler = () => {
   //   if (formData && visitorId && amount) {

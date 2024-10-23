@@ -92,7 +92,7 @@ const SummaryCart1 = ({ route, navigation }) => {
     }, [userId]);
 
     const handleContinueToPayment = () => {
-        navigation.navigate('BookingKit1', { visitorId: userId, totalItems: totalItems, totalPrice, cartId, user });
+        navigation.navigate('BookingKit1', { visitorId: userId, totalItems: totalItems, totalPrice, cartId, user, vehiclenos: cartItems.map(i => i.item.vehicleno) });
     };
 
     if (loading) {
