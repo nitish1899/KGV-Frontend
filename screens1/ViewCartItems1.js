@@ -18,7 +18,7 @@ const ViewCartItems1 = ({ route, navigation }) => {
 
     useEffect(() => {
         // Fetch cart ID
-        axios.get(`https://kgv-backend.onrender.com/api/cart/${userId}`)
+        axios.get(`https://kgvapp.pureprakruti.com/api/cart/${userId}`)
             .then(response => {
                 setCartId(response.data._id);
             })
@@ -32,7 +32,7 @@ const ViewCartItems1 = ({ route, navigation }) => {
     useEffect(() => {
         if (cartId) {
             // Fetch cart items
-            axios.get(`https://kgv-backend.onrender.com/api/cart/item/${cartId}`)
+            axios.get(`https://kgvapp.pureprakruti.com/api/cart/item/${cartId}`)
                 .then(response => {
                     const items = response.data.cartItems;
                     setCartItems(items);
@@ -44,7 +44,7 @@ const ViewCartItems1 = ({ route, navigation }) => {
         }
 
         // Fetch wishlist items
-        axios.get(`https://kgv-backend.onrender.com/api/wishlist/${userId}`)
+        axios.get(`https://kgvapp.pureprakruti.com/api/wishlist/${userId}`)
             .then(response => {
                 const items = response.data.wishlistItems;
                 // console.log('wishlistsItems', items)
@@ -60,7 +60,7 @@ const ViewCartItems1 = ({ route, navigation }) => {
     }, [cartId]);
 
     const handleMoveToWishlist = (itemId) => {
-        axios.post(`https://kgv-backend.onrender.com/api/wishlist/moveToWishlist/${itemId}`, { userId })
+        axios.post(`https://kgvapp.pureprakruti.com/api/wishlist/moveToWishlist/${itemId}`, { userId })
             .then((response) => {
                 // Remove item from cart and add to wishlist
                 setCartItems(cartItems.filter(item => item._id !== itemId));
@@ -74,7 +74,7 @@ const ViewCartItems1 = ({ route, navigation }) => {
     };
 
     const handleMoveToCart = (itemId) => {
-        axios.post(`https://kgv-backend.onrender.com/api/cart/moveToCart/${itemId}`, { userId })
+        axios.post(`https://kgvapp.pureprakruti.com/api/cart/moveToCart/${itemId}`, { userId })
             .then((response) => {
                 // Remove item from wishlist and add to cart
                 setWishlistItems(wishlistItems.filter(item => item._id !== itemId));
@@ -90,7 +90,7 @@ const ViewCartItems1 = ({ route, navigation }) => {
 
     const handleDeleteCartItem = (itemId) => {
         console.log('Attempting to delete item with ID:', itemId);
-        axios.delete(`https://kgv-backend.onrender.com/api/cart/cart/item/${itemId}`)
+        axios.delete(`https://kgvapp.pureprakruti.com/api/cart/cart/item/${itemId}`)
             .then(() => {
                 setCartItems(cartItems.filter(item => item._id !== itemId));
                 Alert.alert('Success', 'Item removed from cart');
@@ -103,7 +103,7 @@ const ViewCartItems1 = ({ route, navigation }) => {
 
     const handleDeleteWishlistItem = (itemId) => {
         console.log('Attempting to delete item with ID:', itemId);
-        axios.delete(`https://kgv-backend.onrender.com/api/wishlist/${userId}/${itemId}`)
+        axios.delete(`https://kgvapp.pureprakruti.com/api/wishlist/${userId}/${itemId}`)
             .then(() => {
                 setWishlistItems(wishlistItems.filter(item => item._id !== itemId));
                 Alert.alert('Success', 'Item removed from wishlist');

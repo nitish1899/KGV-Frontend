@@ -7,10 +7,7 @@ import { Formik } from 'formik';
 export default function MyPage() {
   const [menuVisible, setMenuVisible] = useState(false);
 
-
   const navigation = useNavigation();
-
-
 
   const navigateBack = () => {
     // Add navigation logic to go back to the previous page
@@ -19,10 +16,6 @@ export default function MyPage() {
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
   };
-
- 
-
-  
 
   return (
     <TouchableWithoutFeedback onPress={() => setMenuVisible(false)}>

@@ -109,7 +109,7 @@ export default function BikeDetails({ navigation, route }) {
     useEffect(() => {
         const fetchBikeDetails = async () => {
             try {
-                const response = await fetch(`http://192.168.1.5:8005/api/v1/visitorbikedetails/visitorbikedetails/${vehicleno}`);
+                const response = await fetch(`https://kgvapp.pureprakruti.com/api/v1/visitorbikedetails/visitorbikedetails/${vehicleno}`);
                 const result = await response.json();
 
                 if (response.ok) {
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
     bubbleContainer: {
         backgroundColor: 'rgba(255, 255, 255, 0.8)', // Bubble background color
         borderRadius: 60, // Make it circular
-        padding: 15, // Padding for larger bubbles
+        padding: 18, // Padding for larger bubbles
         margin: 20, // Margin around bubbles
         shadowColor: '#000', // Shadow for depth
         shadowOffset: {
@@ -256,10 +256,11 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5, // For Android shadow
         alignSelf: 'center', // Center the bubble horizontally
-        width: 200,
+        width: 190,
         height: 180, // Fixed height for circular shape
         justifyContent: 'center', // Center text vertically
-        alignItems: 'center', // Center text horizontally
+        alignItems: 'center', // Center text horizontally,
+        // marginHorizontal: width * 0.4
     },
     bubbleText: {
         fontSize: width * 0.045, // Larger font size for better readability
@@ -282,14 +283,13 @@ const styles = StyleSheet.create({
         border: 20,
 
     },
-
     overlayTextContainer: {
         position: 'absolute',
-        top: height * 0.15,
-        left: width * 0.15,
+        top: height * 0.16,
+        left: width * 0.17,
         zIndex: 1,
         height: height * 0.08,
-        width: width * 0.33,
+        width: width * 0.29,
     },
     overlayText: {
         fontSize: width * 0.035,

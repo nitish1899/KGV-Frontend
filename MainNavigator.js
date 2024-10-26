@@ -24,10 +24,8 @@ import Congratulation from './screens/Congratulation';
 import PaymentSuccessnew from './screens/PaymentSuccessnew';
 import MultipleImageUpload from './screens/MediaImageUpload';
 import PremiumUser from './screens/PremiumUser';
-import KgvPaymentSuccess from './screens/KgvPaymantSuccess';
 import UserNavigator from './UserNavigator';
 import MainNavigator1 from './MainNavigator1';
-import Register1 from './screens/Register1';
 import SpinFeature from './screens/SpinFeature';
 import TermsAndConditions from './screens/TermsAndConditions';
 import PremiumPayment from './screens/PremiumPayment';
@@ -45,7 +43,6 @@ export default () => {
             <Stack.Screen name="Landing" component={Landing} />
             <Stack.Screen name="ForgotPin" component={ForgotPin} />
             <Stack.Screen name="Register" component={Register} />
-            <Stack.Screen name="Register1" component={Register1} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Welcome" component={Welcome} />
             <Stack.Screen name="Ourproduct" component={Ourproduct} />
@@ -68,7 +65,6 @@ export default () => {
             <Stack.Screen name="PaymentSuccessnew" component={PaymentSuccessnew} />
             <Stack.Screen name="MultipleImageUpload" component={MultipleImageUpload} />
             <Stack.Screen name="PremiumUser" component={PremiumUser} />
-            <Stack.Screen name="KgvPaymentSuccess" component={KgvPaymentSuccess} />
             <Stack.Screen name="UserNavigator" component={UserNavigator} />
             <Stack.Screen name="SpinFeature" component={SpinFeature} />
             <Stack.Screen name="TermsAndConditions" component={TermsAndConditions} />

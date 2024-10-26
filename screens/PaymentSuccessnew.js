@@ -17,7 +17,7 @@ const PaymentSuccessnew = ({ route }) => {
     useEffect(() => {
         const userInfo = async () => {
             try {
-                const response = await axios.get(`https://kgv-backend.onrender.com/api/files/user/${formData.phone}`);
+                const response = await axios.get(`https://kgvapp.pureprakruti.com/api/files/user/${formData.phone}`);
                 console.log('user Response', response.data)
                 setIsParticipated(response.data.data.user.isParticipated);
             } catch (error) {

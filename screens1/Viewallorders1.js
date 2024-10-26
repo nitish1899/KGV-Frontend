@@ -18,7 +18,7 @@ const Viewallorders1 = ({ route }) => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get(`https://kgv-backend.onrender.com/api/order/allorders/${visitorId}`);
+        const response = await axios.get(`https://kgvapp.pureprakruti.com/api/order/allorders/${visitorId}`);
         setOrders(response.data.orders);
       } catch (error) {
         console.log('Error fetching orders:', error);

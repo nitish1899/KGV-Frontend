@@ -22,7 +22,7 @@ const Recomanded2 = ({ route }) => {
     useEffect(() => {
         const fetchVehicleDetails = async () => {
             try {
-                const response = await axios.get(`https://kgv-backend.onrender.com/api/v1/visitorbikedetails/visitorbikedetails/${vehicleno}`);
+                const response = await axios.get(`https://kgvapp.pureprakruti.com/api/v1/visitorbikedetails/visitorbikedetails/${vehicleno}`);
                 console.log("Vehicle Details Response:", response.data);
 
                 if (response.status === 200) {
@@ -31,7 +31,7 @@ const Recomanded2 = ({ route }) => {
                     setVisitor({ id: visitor._id, name: visitor.fullName });
                     setVisitorBikeDetailsId(_id);
 
-                    const kitsResponse = await axios.get('https://kgv-backend.onrender.com/api/kits/get');
+                    const kitsResponse = await axios.get('https://kgvapp.pureprakruti.com/api/kits/get');
                     console.log("Kits Response:", kitsResponse.data);
 
                     if (kitsResponse.status === 200) {
@@ -76,7 +76,7 @@ const Recomanded2 = ({ route }) => {
                 vehicleno
             };
 
-            const response = await axios.post('https://kgv-backend.onrender.com/api/cart/item', payload);
+            const response = await axios.post('https://kgvapp.pureprakruti.com/api/cart/item', payload);
             console.log("cartItemId", response.data.cartItemId);
             if (response.status === 200) {
                 Alert.alert('Success', 'Item added successfully!');

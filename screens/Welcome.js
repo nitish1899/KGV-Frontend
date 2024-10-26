@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: height * 0.02,
-        marginTop: height * 0.13,
+        marginTop: height * 0.12,
     },
     bannerText: {
         color: 'white',
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#06264D',
         padding: height * 0.015,
         borderRadius: 5,
-        marginTop: height * 0.05,
+        marginTop: height * 0.02,
         marginHorizontal: width * 0.33,
     },
     buttonText: {

@@ -38,8 +38,6 @@ const ProductComparison = ({ navigation, route }) => {
     );
 };
 
-
-
 const styles = StyleSheet.create({
     gradient: {
         flex: 1,
@@ -54,7 +52,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginLeft: width * 0.253, // Responsive margin
         // marginTop: height * 0.01
-        marginRight: width * 0.08
+        marginRight: width * 0.08,
+        top:-80
     },
     title: {
         fontSize: width * 0.06, // Responsive font size (6% of screen width)
@@ -95,7 +94,7 @@ const styles = StyleSheet.create({
     },
     button: {
         position: 'absolute',
-        bottom: height * 0.031, // 10% from the bottom of the screen
+        bottom: height * 0.035, // 10% from the bottom of the screen
         left: '60%',
         transform: [{ translateX: -width * 0.25 }], // Responsive horizontal translation
         flexDirection: 'row',

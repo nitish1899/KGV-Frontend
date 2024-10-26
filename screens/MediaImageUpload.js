@@ -32,13 +32,18 @@ const MultipleImageUpload = () => {
     }, []);
 
     const pickImage = async (imageKey) => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            quality: 1,
-        });
+        try {
+            let result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                quality: 1,
+            });
 
-        if (!result.canceled) {
-            setImages((prevImages) => ({ ...prevImages, [imageKey]: result.assets[0] }));
+            if (!result.canceled) {
+                setImages((prevImages) => ({ ...prevImages, [imageKey]: result.assets[0] }));
+            }
+        }
+        catch (error) {
+            console.log(error);
         }
     };
 
@@ -74,7 +79,7 @@ const MultipleImageUpload = () => {
         });
 
         try {
-            const response = await axios.post('https://kgv-backend.onrender.com/api/files/upload', formData, {
+            const response = await axios.post('https://kgvapp.pureprakruti.com/api/files/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -520,7 +525,7 @@ export default MultipleImageUpload;
 //         });
 
 //         try {
-//             const response = await axios.post('https://kgv-backend.onrender.com/api/files/upload', formData, {
+//             const response = await axios.post('https://kgvapp.pureprakruti.com/api/files/upload', formData, {
 //                 headers: {
 //                     'Content-Type': 'multipart/form-data',
 //                 },

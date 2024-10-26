@@ -28,11 +28,11 @@ const Booking = () => {
 
     try {
       // Fetch the API key
-      const { data: { key } } = await axios.get('https://kgv-backend.onrender.com/api/getkey');
+      const { data: { key } } = await axios.get('https://kgvapp.pureprakruti.com/api/getkey');
       console.log('API Key:', key);
 
       // Place the order
-      const { data: { order } } = await axios.post('https://kgv-backend.onrender.com/api/v1/visitor/placeOrder', { amount: selectedAmount });
+      const { data: { order } } = await axios.post('https://kgvapp.pureprakruti.com/api/v1/visitor/placeOrder', { amount: selectedAmount });
       console.log('Order:', order);
 
       // Payment options
@@ -43,7 +43,7 @@ const Booking = () => {
         name: 'TWI',
         description: 'Test Transaction',
         order_id: order.id,
-        callback_url: 'https://kgv-backend.onrender.com/api/v1/visitor/verifyPayment',
+        callback_url: 'https://kgvapp.pureprakruti.com/api/v1/visitor/verifyPayment',
         prefill: {
           email,
           name: `${firstname} ${lastname}`,

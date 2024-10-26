@@ -34,10 +34,10 @@ const Congratulation = ({ route }) => {
             const amountInPaise = Math.round(Number(amount));
 
             // Fetch Razorpay key
-            const { data: { key } } = await axios.get("https://kgv-backend.onrender.com/api/getkey");
+            const { data: { key } } = await axios.get("https://kgvapp.pureprakruti.com/api/getkey");
 
             // Create order
-            const { data: { order } } = await axios.post("https://kgv-backend.onrender.com/api/v1/payment/newcheckout", { amount: amountInPaise });
+            const { data: { order } } = await axios.post("https://kgvapp.pureprakruti.com/api/v1/payment/newcheckout", { amount: amountInPaise });
             const options = {
                 key,
                 amount: order.amount,
@@ -61,7 +61,7 @@ const Congratulation = ({ route }) => {
                 .then(async (data) => {
                     console.log(`Payment Successful: ${data.razorpay_payment_id}`);
 
-                    const verificationResponse = await axios.post("https://kgv-backend.onrender.com/api/v1/payment/contest/payment-verification", {
+                    const verificationResponse = await axios.post("https://kgvapp.pureprakruti.com/api/v1/payment/contest/payment-verification", {
                         ...data,
                         notes: {
                             name: formData.name,
@@ -217,10 +217,9 @@ const Congratulation = ({ route }) => {
 
                 </View>
 
-
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={() => navigation.navigate('Register1')}
+                    onPress={() => navigation.navigate('Register')}
                 >
                     <Text style={styles.buttonText}>KGV Mitra Club</Text>
                 </TouchableOpacity>
@@ -264,6 +263,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: width * 0.2,
         borderRadius: 8,
         marginTop: -height * 0.08,
+        marginBottom: height * 0.07,
     },
     buttonText: {
         color: 'white',
@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: height * 0.03,
         width: '90%',
-        marginBottom: height * 0.03,
+        marginBottom: height * 0.01,
         elevation: 20,
     },
     cardHeader: {

@@ -22,7 +22,7 @@ const Orderdetails1 = ({ route, navigation }) => {
   useEffect(() => {
     const fetchOrderDetails = async () => {
       try {
-        const response = await axios.get(`https://kgv-backend.onrender.com/api/order/orders/${orderId}`);
+        const response = await axios.get(`https://kgvapp.pureprakruti.com/api/order/orders/${orderId}`);
         setOrderDetails(response.data.order);
         console.log(response.data)
       } catch (err) {
@@ -38,7 +38,7 @@ const Orderdetails1 = ({ route, navigation }) => {
   useEffect(() => {
     const sendNotification = async () => {
       try {
-        const response = await axios.post("https://kgv-backend.onrender.com/api/v1/bookingkit/booking-verification", {
+        const response = await axios.post("https://kgvapp.pureprakruti.com/api/v1/bookingkit/booking-verification", {
           razorpay_order_id,
           razorpay_payment_id,
           razorpay_signature,

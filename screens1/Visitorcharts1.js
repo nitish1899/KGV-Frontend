@@ -49,10 +49,10 @@ const styles = StyleSheet.create({
     },
     logo: {
         width: width * 1.2, // 80% of the screen width
-        height: height * 0.98, // 40% of the screen height
+        height: height * 0.99, // 40% of the screen height
         alignSelf: 'center',
         marginLeft: width * 0.253, // Responsive margin
-        // marginTop: height * 0.01
+        marginTop: -height * 0.1,
         marginRight: width * 0.08
     },
     title: {

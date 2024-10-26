@@ -19,7 +19,7 @@ const BillingSummary = ({ route, navigation }) => {
         // Fetch cart data
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://kgv-backend.onrender.com/api/cart/item/${cartId}`);
+                const response = await axios.get(`https://kgvapp.pureprakruti.com/api/cart/item/${cartId}`);
                 setData(response.data);
             } catch (error) {
                 console.log('Error fetching cart data:', error);
@@ -32,7 +32,7 @@ const BillingSummary = ({ route, navigation }) => {
         // Fetch buyer details using visitorId
         const fetchBuyerDetails = async () => {
             try {
-                const response = await axios.get(`https://kgv-backend.onrender.com/api/v1/visitor/details/${visitorId}`);
+                const response = await axios.get(`https://kgvapp.pureprakruti.com/api/v1/visitor/details/${visitorId}`);
                 setBuyerDetails(response.data.data[0]);
             } catch (error) {
                 console.log('Error fetching buyer details:', error);
@@ -211,6 +211,7 @@ const styles = StyleSheet.create({
         marginVertical: height * 0.01, // 1% of screen height
         borderRadius: 10,
         elevation: 2,
+        // backgroundColor: 'red',
     },
     tableContainer: {
         flex: 1,

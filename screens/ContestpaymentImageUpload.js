@@ -55,7 +55,7 @@ const ContestpaymentImageUpload = ({ route }) => {
         console.log('formadata', formData)
 
         try {
-            const response = await axios.post('https://kgv-backend.onrender.com/api/contestupload', formData, {
+            const response = await axios.post('https://kgvapp.pureprakruti.com/api/contestupload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

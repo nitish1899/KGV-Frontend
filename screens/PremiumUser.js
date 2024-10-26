@@ -27,7 +27,7 @@ const PremiumUser = ({ route }) => {
   useEffect(() => {
     const fetchVisitorDetails = async () => {
       try {
-        const response = await axios.get(`https://kgv-backend.onrender.com/api/v1/visitor/details/${visitorId}`);
+        const response = await axios.get(`https://kgvapp.pureprakruti.com/api/v1/visitor/details/${visitorId}`);
         if (response.data.success) {
           const visitorData = response.data.data[0];
           setFormData((prevData) => ({
@@ -65,8 +65,8 @@ const PremiumUser = ({ route }) => {
 
       const amountInPaise = Math.round(Number(amount) * 100);
 
-      const { data: { key } } = await axios.get("https://kgv-backend.onrender.com/api/getkey");
-      const { data: { order } } = await axios.post("https://kgv-backend.onrender.com/api/v1/kgvmitra/kgvcheckout", { amount: amountInPaise });
+      const { data: { key } } = await axios.get("https://kgvapp.pureprakruti.com/api/getkey");
+      const { data: { order } } = await axios.post("https://kgvapp.pureprakruti.com/api/v1/kgvmitra/kgvcheckout", { amount: amountInPaise });
 
       const options = {
         key,
@@ -94,7 +94,7 @@ const PremiumUser = ({ route }) => {
           console.log(data.razorpay_order_id)
           console.log(data.razorpay_signature)
 
-          const verificationResponse = await axios.post("https://kgv-backend.onrender.com/api/v1/payment/premium/payment-verification", {
+          const verificationResponse = await axios.post("https://kgvapp.pureprakruti.com/api/v1/payment/premium/payment-verification", {
             ...data,
             notes: {
               fullName: formData.fullName,
@@ -112,14 +112,6 @@ const PremiumUser = ({ route }) => {
 
           if (verificationResponse.data.success) {
             navigation.navigate('PremiumPayment', { paymentId: data.razorpay_payment_id, formData })
-            // Navigate to the success screen
-            //  navigation.dispatch(
-            //   CommonActions.reset({
-            //     index: 0,
-            //     routes: [{ name: 'MainNavigator1', params: { screen: 'Welcome1', params: { visitorId } } }],
-            //   })
-            // );
-
           } else {
             // Handle failure (if any)
             Alert.alert('Payment Verification Failed', 'Please contact support.');
@@ -134,21 +126,6 @@ const PremiumUser = ({ route }) => {
       Alert.alert('Error', 'Something went wrong. Please try again.');
     }
   };
-
-  // const amount = 299;
-
-  // const checkoutHandler = () => {
-  //   if (formData && visitorId && amount) {
-  //     navigation.navigate('PrimumpaymentImageUpload', {
-  //       formData,
-  //       visitorId,
-  //       amount
-  //     });
-  //   } else {
-  //     // Handle case where required data is missing
-  //     console.log('Missing required data for navigation.');
-  //   }
-  // };
 
   return (
     <LinearGradient colors={['#06264D', '#FFF']} style={styles.gradient}>
@@ -186,8 +163,6 @@ const PremiumUser = ({ route }) => {
               <Text style={styles.backButtonText}>Back to Menu</Text>
             </TouchableOpacity>
           </View>
-
-
 
         </ScrollView>
       </SafeAreaView>

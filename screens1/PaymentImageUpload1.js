@@ -54,7 +54,7 @@ const PaymentImageUpload1 = ({ route }) => {
     formData.append('amount', amountState);
 
     try {
-      const response = await axios.post('https://kgv-backend.onrender.com/api/upload', formData, {
+      const response = await axios.post('https://kgvapp.pureprakruti.com/api/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -263,7 +263,7 @@ export default PaymentImageUpload1;
 //     formData.append('amount', amountState);
 
 //     try {
-//       const response = await axios.post('https://kgv-backend.onrender.com/api/upload', formData, {
+//       const response = await axios.post('https://kgvapp.pureprakruti.com/api/upload', formData, {
 //         headers: {
 //           'Content-Type': 'multipart/form-data',
 //         },

@@ -15,7 +15,7 @@ const WalletScreen1 = ({ route, navigation }) => {
   const [totalPoints, setTotalPoints] = useState(0);
   const [converted, setConverted] = useState(false);
 
-  const walletApiUrl = `https://kgv-backend.onrender.com/api/wallet/${userId}`;
+  const walletApiUrl = `https://kgvapp.pureprakruti.com/api/wallet/${userId}`;
 
   useEffect(() => {
     if (userId) {
@@ -46,7 +46,7 @@ const WalletScreen1 = ({ route, navigation }) => {
 
   const createWallet = async () => {
     try {
-      await axios.post('https://kgv-backend.onrender.com/api/wallet/create', { userId });
+      await axios.post('https://kgvapp.pureprakruti.com/api/wallet/create', { userId });
       Alert.alert('Wallet Created', 'Your wallet has been successfully created.');
       fetchWalletBalance();
       fetchTransactions();
@@ -205,7 +205,7 @@ const WalletScreen1 = ({ route, navigation }) => {
 
           <TouchableOpacity
             style={styles.actionButton}
-            onPress={() => navigation.navigate('Visitordetails2', { user })}
+            onPress={() => navigation.navigate('Visitordetails1', { user })}
             disabled={true}
           >
             <Ionicons name="send-outline" size={32} color="red" />

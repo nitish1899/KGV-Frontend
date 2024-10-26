@@ -45,26 +45,26 @@ export default () => {
             <Stack.Screen name="Profile1" component={Profile1} />
             <Stack.Screen name="Ourproduct1" component={Ourproduct1} />
             <Stack.Screen name="Visitordetails1" component={Visitordetails1} />
-            <Stack.Screen name="Visitordetails2" component={Visitordetails2} />
+            {/* <Stack.Screen name="Visitordetails2" component={Visitordetails2} /> */}
             <Stack.Screen name="Visitorcharts1" component={Visitorcharts1} />
-            <Stack.Screen name="Visitorcharts2" component={Visitorcharts2} />
+            {/* <Stack.Screen name="Visitorcharts2" component={Visitorcharts2} /> */}
             <Stack.Screen name="Visitorcomparechart1" component={Visitorcomparechart1} />
-            <Stack.Screen name="Visitorcomparechart2" component={Visitorcomparechart2} />
+            {/* <Stack.Screen name="Visitorcomparechart2" component={Visitorcomparechart2} /> */}
             <Stack.Screen name="Recomanded1" component={Recomanded1} />
-            <Stack.Screen name="Recomanded2" component={Recomanded2} />
+            {/* <Stack.Screen name="Recomanded2" component={Recomanded2} /> */}
             <Stack.Screen name="AddToCart1" component={AddonitemToCart1} />
-            <Stack.Screen name="AddToCart2" component={AddonitemToCart2} />
+            {/* <Stack.Screen name="AddToCart2" component={AddonitemToCart2} /> */}
             <Stack.Screen name="ViewCartItems1" component={ViewCartItems1} />
-            <Stack.Screen name="ViewCartItem2" component={ViewCartItem2} />
+            {/* <Stack.Screen name="ViewCartItem2" component={ViewCartItem2} /> */}
             <Stack.Screen name="SummaryCart1" component={SummaryCart1} />
-            <Stack.Screen name="SummaryCart2" component={SummaryCart2} />
+            {/* <Stack.Screen name="SummaryCart2" component={SummaryCart2} /> */}
             <Stack.Screen name="BookingKit1" component={BookingKit1} />
-            <Stack.Screen name="BookingKit2" component={BookingKit2} />
+            {/* <Stack.Screen name="BookingKit2" component={BookingKit2} /> */}
             <Stack.Screen name="BookingCheckout1" component={BookingCheckout1} />
             <Stack.Screen name="PaymentPage1" component={PaymentPage1} />
-            <Stack.Screen name="PaymentPage2" component={PaymentPage2} />
+            {/* <Stack.Screen name="PaymentPage2" component={PaymentPage2} /> */}
             <Stack.Screen name="WalletScreen1" component={WalletScreen1} />
-            <Stack.Screen name="BookingCheckout2" component={BookingCheckout2} />
+            {/* <Stack.Screen name="BookingCheckout2" component={BookingCheckout2} /> */}
             <Stack.Screen name="PaymentSuccess1" component={PaymentSuccess1} />
             <Stack.Screen name="Viewallorders1" component={Viewallorders1} />
             <Stack.Screen name="PaymentImageUpload1" component={PaymentImageUpload1} />

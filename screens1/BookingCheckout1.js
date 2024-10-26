@@ -34,7 +34,7 @@ const BookingCheckout1 = ({ route }) => {
   useEffect(() => {
     const fetchVisitorDetails = async () => {
       try {
-        const response = await axios.get(`https://kgv-backend.onrender.com/api/v1/visitor/details/${visitorId}`);
+        const response = await axios.get(`https://kgvapp.pureprakruti.com/api/v1/visitor/details/${visitorId}`);
         if (response.data.success) {
           const visitorData = response.data.data[0];
           const itemsCount = Number(totalItems);
@@ -117,6 +117,7 @@ const BookingCheckout1 = ({ route }) => {
               placeholder="Full Name"
               value={formData.fullName}
               onChangeText={(text) => handleChange('fullName', text)}
+              readOnly
             />
             <TextInput
               style={styles.input}
@@ -124,12 +125,14 @@ const BookingCheckout1 = ({ route }) => {
               value={formData.phoneNumber}
               onChangeText={(text) => handleChange('phoneNumber', text)}
               keyboardType="phone-pad"
+              readOnly
             />
             <TextInput
               style={styles.input}
               placeholder="Address"
               value={formData.address}
               onChangeText={(text) => handleChange('address', text)}
+              readOnly
             />
             <TextInput
               style={styles.input}
@@ -137,43 +140,50 @@ const BookingCheckout1 = ({ route }) => {
               value={formData.email}
               onChangeText={(text) => handleChange('email', text)}
               keyboardType="email-address"
+              readOnly
             />
             <TextInput
               style={styles.input}
               placeholder="Aadhar"
               value={formData.aadhar}
               onChangeText={(text) => handleChange('aadhar', text)}
+              readOnly
             />
             <TextInput
               style={styles.input}
               placeholder="DL Number"
               value={formData.dlno}
               onChangeText={(text) => handleChange('dlno', text)}
+              readOnly
             />
             <TextInput
               style={styles.input}
               placeholder="Date of Birth"
               value={formData.dob}
               onChangeText={(text) => handleChange('dob', text)}
+              readOnly
             />
             <TextInput
               style={styles.input}
               placeholder="Gender"
               value={formData.gender}
               onChangeText={(text) => handleChange('gender', text)}
+              readOnly
             />
             <TextInput
               style={styles.input}
               placeholder="PAN"
               value={formData.pan}
               onChangeText={(text) => handleChange('pan', text)}
+              readOnly
             />
             <TextInput
-              style={styles.input}
+              style={[styles.input, { marginBottom: 10 }]}
               placeholder="Amount"
               value={formData.amount}
               onChangeText={(text) => handleChange('amount', text)}
               keyboardType="numeric"
+              readOnly
             />
             <Button title="Continue" onPress={checkoutHandler} color="#841584" style={{ borderRadius: 50 }} />
           </View>
@@ -199,7 +209,7 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    padding: scaleWidth * 20, // Scale padding based on screen width
+    padding: scaleWidth * 10, // Scale padding based on screen width
     justifyContent: 'center',
   },
   button: { borderRadius: 50 },

@@ -61,7 +61,7 @@ export default ({ navigation, route }) => {
 
     const fetchBikeDetails = async () => {
         try {
-            const response = await fetch('https://kgv-backend.onrender.com/api/bikes');
+            const response = await fetch('https://kgvapp.pureprakruti.com/api/bikes');
             const result = await response.json();
 
             if (response.ok) {
@@ -99,7 +99,7 @@ export default ({ navigation, route }) => {
         };
 
         try {
-            const response = await fetch('https://kgv-backend.onrender.com/api/v1/visitorbikedetails/v1', {
+            const response = await fetch('https://kgvapp.pureprakruti.com/api/v1/visitorbikedetails/v1', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ export default ({ navigation, route }) => {
     useEffect(() => {
         const fetchVisitorDetails = async () => {
             try {
-                const response = await fetch(`https://kgv-backend.onrender.com/api/v1/visitor/details/${userId}`);
+                const response = await fetch(`https://kgvapp.pureprakruti.com/api/v1/visitor/details/${userId}`);
                 const result = await response.json();
 
                 if (response.ok && result.success) {
@@ -380,7 +380,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         alignItems: 'center',
         flexDirection: 'row',
-        marginTop: height * 0.12,
+        marginTop: height * 0.01,
     },
     buttonText: {
         color: 'white',

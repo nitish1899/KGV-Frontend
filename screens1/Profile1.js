@@ -29,7 +29,7 @@ const Profile1 = ({ route }) => {
         // Fetch data from the API
         const fetchUserData = async () => {
             try {
-                const response = await fetch(`https://kgv-backend.onrender.com/api/v1/visitor/details/${userId}`);
+                const response = await fetch(`https://kgvapp.pureprakruti.com/api/v1/visitor/details/${userId}`);
 
                 const result = await response.json();
                 if (result.success) {
@@ -69,7 +69,7 @@ const Profile1 = ({ route }) => {
         try {
             const { _id, __v, ...updateData } = formData;
 
-            const response = await fetch(`https://kgv-backend.onrender.com/api/v1/visitor/user/${userId}`, {
+            const response = await fetch(`https://kgvapp.pureprakruti.com/api/v1/visitor/user/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

@@ -12,7 +12,7 @@ const ProfileButton = ({ onPress }) => {
 const styles = StyleSheet.create({
     profileButton: {
         position: 'absolute',
-        top: 40,
+        top: 20,
         right: 10,
         padding: 10,
         backgroundColor: '#06264D',

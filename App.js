@@ -35,7 +35,7 @@ export default function App() {
   const trackReferral = async (referralCode) => {
     try {
       // Make an API call to track the referral
-      const response = await fetch('https://kgv-backend.onrender.com/api/referrals', {
+      const response = await fetch('https://kgvapp.pureprakruti.com/api/referrals', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ export default function App() {
 //   const trackReferral = async (referralCode) => {
 //     try {
 //       // Make an API call to track the referral
-//       const response = await fetch('https://kgv-backend.onrender.com/api/referrals', {
+//       const response = await fetch('https://kgvapp.pureprakruti.com/api/referrals', {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',

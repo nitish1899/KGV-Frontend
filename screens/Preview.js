@@ -18,8 +18,6 @@ import Logo from "../assets/images/logo.svg";
 import Ind from "../assets/images/ind.svg";
 import { AntDesign } from "@expo/vector-icons";
 
-// import Button from '../components/Buttons/Button';
-
 export default ({ navigation }) => {
   
        

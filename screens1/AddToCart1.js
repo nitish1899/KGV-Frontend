@@ -26,7 +26,7 @@ const AddonitemToCart1 = ({ route }) => {
     const navigation = useNavigation();
 
     useEffect(() => {
-        axios.get(`https://kgv-backend.onrender.com/api/kits/search/${kitName}`)
+        axios.get(`https://kgvapp.pureprakruti.com/api/kits/search/${kitName}`)
             .then(response => {
                 if (response.data.success) {
                     setAddonItems(response.data.data.addonItems);
@@ -75,7 +75,7 @@ const AddonitemToCart1 = ({ route }) => {
             visitorId,
         };
 
-        axios.post('https://kgv-backend.onrender.com/api/cart/kit/addons', data)
+        axios.post('https://kgvapp.pureprakruti.com/api/cart/kit/addons', data)
             .then(response => {
                 if (response.data.updatedCartItem) {
                     Alert.alert('Success', 'Addons added to cart successfully!');
@@ -366,7 +366,7 @@ export default AddonitemToCart1;
 //     const navigation = useNavigation();
 
 //     useEffect(() => {
-//         axios.get(`https://kgv-backend.onrender.com/api/kits/search/${kitName}`)
+//         axios.get(`https://kgvapp.pureprakruti.com/api/kits/search/${kitName}`)
 //             .then(response => {
 //                 if (response.data.success) {
 //                     setAddonItems(response.data.data.addonItems);
@@ -422,7 +422,7 @@ export default AddonitemToCart1;
 //             visitorId,
 //         };
 
-//         axios.post('https://kgv-backend.onrender.com/api/cart/kit/addons', data)
+//         axios.post('https://kgvapp.pureprakruti.com/api/cart/kit/addons', data)
 //             .then(response => {
 //                 if (response.data.updatedCartItem) {
 //                     Alert.alert('Success', 'Addons added to cart successfully!');

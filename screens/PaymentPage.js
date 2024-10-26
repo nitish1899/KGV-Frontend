@@ -22,7 +22,7 @@ const PaymentPage = ({ route, navigation }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://kgv-backend.onrender.com/api/cart/item/${cartId}`);
+        const response = await axios.get(`https://kgvapp.pureprakruti.com/api/cart/item/${cartId}`);
         setData(response.data);
       } catch (error) {
         console.log('Error fetching cart data:', error);
@@ -35,7 +35,7 @@ const PaymentPage = ({ route, navigation }) => {
 
     const fetchBuyerDetails = async () => {
       try {
-        const response = await axios.get(`https://kgv-backend.onrender.com/api/v1/visitor/details/${visitorId}`);
+        const response = await axios.get(`https://kgvapp.pureprakruti.com/api/v1/visitor/details/${visitorId}`);
         setBuyerDetails(response.data.data[0]);
       } catch (error) {
         console.log('Error fetching buyer details:', error);
@@ -99,8 +99,8 @@ const PaymentPage = ({ route, navigation }) => {
     try {
       const amountInPaise = Math.round(Number(amount) * 100);
       // Fetch Razorpay key
-      const { data: { key } } = await axios.get("https://kgv-backend.onrender.com/api/getkey");
-      const { data: { order } } = await axios.post("https://kgv-backend.onrender.com/api/v1/bookingkit/checkout", { amount: amountInPaise });
+      const { data: { key } } = await axios.get("https://kgvapp.pureprakruti.com/api/getkey");
+      const { data: { order } } = await axios.post("https://kgvapp.pureprakruti.com/api/v1/bookingkit/checkout", { amount: amountInPaise });
       const options = {
         key,
         amount: order.amount,
@@ -131,7 +131,7 @@ const PaymentPage = ({ route, navigation }) => {
             }
             console.log('Sending order data:', { visitorId, cartId });
             // Post the cart items to order schema
-            const orderResponse = await axios.post("https://kgv-backend.onrender.com/api/order/item", { visitorId, cartId, totalAmount, amountPaid: amount });
+            const orderResponse = await axios.post("https://kgvapp.pureprakruti.com/api/order/item", { visitorId, cartId, totalAmount, amountPaid: amount });
             console.log('Order saved successfully:', orderResponse.data);
             console.log('Order saved successfully:', orderResponse.data.order._id);
             navigation.navigate('PaymentSuccess', {
@@ -551,6 +551,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: height * 0.02
   },
 });
 
